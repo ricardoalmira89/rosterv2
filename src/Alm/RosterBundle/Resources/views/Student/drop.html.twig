@@ -1,0 +1,115 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-lg-12">
+            <h1>Drop Student</h1>
+        </div>
+    </div>
+
+    <form action="{{ path('student_drop',{'id' : entity.id}) }}" method="post" {{ form_enctype(form) }}>
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- Dropped -->
+                <div role="tabpanel" class="tab-pane active" id="tab006">
+                    <div class="form-horizontal">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h4 class="contacto-title" style="border-bottom: 1px solid #CCC;">Drop Information</h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Amount:</label>
+                                    <div class="col-sm-9">{{ form_widget(form.amount) }}</div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Check:</label>
+                                    <div class="col-sm-9">{{ form_widget(form.check) }}</div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Date:</label>
+                                    <div class="col-sm-9">{{ form_widget(form.date) }}</div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Refund:</label>
+                                    <div class="col-sm-9">{{ form_widget(form.refund) }}</div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Paid:</label>
+                                    <div class="col-sm-9">{{ form_widget(form.paid) }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <input type="submit" value="Send" class="btn btn-default active" id="submit-btn">
+            </div>
+        </div>
+
+    </form>
+
+{% endblock %}
+
+{% block javascripts%}
+    {{ parent() }}
+    <script type="text/javascript">
+
+        function activateTab(tabId){
+            $('.tab-pane').removeClass('active');
+            $('.limenu').removeClass('active');
+            $('#tab00'+tabId).addClass('active');
+            $('#l00'+tabId).addClass('active');
+        }
+
+        function validateForm(){
+
+            if ($('#student_startDate').val() == '' || $('#student_endDate').val() == '') {
+                activateTab('2');
+            }
+
+            if ($('#student_graduated_startWorking').val() == '' || $('#student_graduated_diplomaPrinted').val() == '') {
+                activateTab('5');
+            }
+
+            if ($('#student_dropInfo_date').val() == '') {
+                activateTab('6');
+            }
+        }
+
+        $(document).ready(function() {
+
+            var programs = $('#student_programs');
+            var schedules = $('#student_schedules');
+
+            activateTab('1');
+
+            $("#student_locker option[value="+$('')+"]").attr("selected","selected");
+
+            $('#submit-btn').click(function(){
+                validateForm();
+            });
+
+            programs.change(function(){
+                ajaxGetSchedules(programs, schedules, getSelectedComma(), '{{ path('ajax_schedules') }}');
+            })
+
+
+        });
+    </script>
+
+{% endblock %}

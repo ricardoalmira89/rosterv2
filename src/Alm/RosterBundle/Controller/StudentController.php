@@ -2,6 +2,7 @@
 
 namespace Alm\RosterBundle\Controller;
 
+use Alm\RosterBundle\Form\DropInfoType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -162,10 +163,12 @@ class StudentController extends Controller
     */
     private function createEditForm(Student $entity)
     {
+        $lockerId = ($entity->getLocker()) ? $entity->getLocker()->getId() : null;
+
         $form = $this->createForm(new StudentType(), $entity, array(
             'action' => $this->generateUrl('student_update', array('id' => $entity->getId())),
             'method' => 'PUT',
-            'lockerId' => $entity->getLocker()->getId()
+            'lockerId' => $lockerId
         ));
 
         $form->add('submit', 'submit', array('label' => 'Update'));
@@ -227,5 +230,42 @@ class StudentController extends Controller
         $em->flush();
 
         return $this->redirect($this->generateUrl('student'));
+    }
+
+    /**
+     * Drops a Student entity.
+     *
+     * @Route("/drop/{id}", name="student_drop")
+     * @Template("@Roster/Student/drop.html.twig")
+     */
+    public function dropAction(Request $request, $id){
+
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('RosterBundle:Student')->find($id);
+        $dropInfo = $entity->getDropInfo();
+
+        $form = $this->createForm(new DropInfoType(), $dropInfo);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Student entity.');
+        }
+
+        $form->handleRequest($request);
+
+        if ($request->getMethod() == 'POST' ){
+
+            $entity->setDropInfo($dropInfo);
+            $em->persist($dropInfo);
+            $em->persist($entity);
+            $em->flush();
+            $this->get('session')->getFlashBag()->add('notice','Student dropped successfully!');
+
+        }
+
+        return array(
+            'entity'      => $entity,
+            'form'   => $form->createView(),
+        );
+
     }
 }

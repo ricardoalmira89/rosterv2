@@ -1,143 +1,365 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    <h1>Student</h1>
+    <h1>Student Show</h1>
 
-    <table class="table table-striped">
-        <tbody>
-            <tr>
-                <th>Lastname</th>
-                <td>{{ entity.lastName }}</td>
-            </tr>
-            <tr>
-                <th>Firstname</th>
-                <td>{{ entity.firstName }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ entity.email }}</td>
-            </tr>
-            <tr>
-                <th>Startdate</th>
-                <td>{{ entity.startDate|date('Y-m-d H:i:s') }}</td>
-            </tr>
-            <tr>
-                <th>Enddate</th>
-                <td>{{ entity.endDate|date('Y-m-d H:i:s') }}</td>
-            </tr>
-            <tr>
-                <th>Homephone</th>
-                <td>{{ entity.homePhone }}</td>
-            </tr>
-            <tr>
-                <th>Bussinessphone</th>
-                <td>{{ entity.bussinessPhone }}</td>
-            </tr>
-            <tr>
-                <th>Cellphone</th>
-                <td>{{ entity.cellPhone }}</td>
-            </tr>
-            <tr>
-                <th>Faxnumber</th>
-                <td>{{ entity.faxNumber }}</td>
-            </tr>
-            <tr>
-                <th>Picture</th>
-                <td>{{ entity.picture }}</td>
-            </tr>
-            <tr>
-                <th>Address</th>
-                <td>{{ entity.address }}</td>
-            </tr>
-            <tr>
-                <th>City</th>
-                <td>{{ entity.city }}</td>
-            </tr>
-            <tr>
-                <th>State</th>
-                <td>{{ entity.state }}</td>
-            </tr>
-            <tr>
-                <th>Zip</th>
-                <td>{{ entity.zip }}</td>
-            </tr>
-            <tr>
-                <th>Country</th>
-                <td>{{ entity.country }}</td>
-            </tr>
-            <tr>
-                <th>Credittrans</th>
-                <td>{{ entity.creditTrans }}</td>
-            </tr>
-            <tr>
-                <th>Refered</th>
-                <td>{{ entity.refered }}</td>
-            </tr>
-            <tr>
-                <th>Webpage</th>
-                <td>{{ entity.webPage }}</td>
-            </tr>
-            <tr>
-                <th>Notes</th>
-                <td>{{ entity.notes }}</td>
-            </tr>
-            <tr>
-                <th>Attachment</th>
-                <td>{{ entity.attachment }}</td>
-            </tr>
-            <tr>
-                <th>Location</th>
-                <td>{{ entity.location }}</td>
-            </tr>
-            <tr>
-                <th>Status</th>
-                <td>{{ entity.status }}</td>
-            </tr>
-            <tr>
-                <th>Comments</th>
-                <td>{{ entity.comments }}</td>
-            </tr>
-            <tr>
-                <th>Emergencycontactname</th>
-                <td>{{ entity.emergencyContactName }}</td>
-            </tr>
-            <tr>
-                <th>Emergencycontactphone1</th>
-                <td>{{ entity.emergencyContactPhone1 }}</td>
-            </tr>
-            <tr>
-                <th>Emergencycontactphone2</th>
-                <td>{{ entity.emergencyContactPhone2 }}</td>
-            </tr>
-            <tr>
-                <th>Emergencycontactphone3</th>
-                <td>{{ entity.emergencyContactPhone3 }}</td>
-            </tr>
-            <tr>
-                <th>Cv</th>
-                <td>{{ entity.cv }}</td>
-            </tr>
-            <tr>
-                <th>Cvs</th>
-                <td>{{ entity.cvs }}</td>
-            </tr>
-            <tr>
-                <th>Middleinitial</th>
-                <td>{{ entity.middleInitial }}</td>
-            </tr>
-            <tr>
-                <th>Paymentinfo</th>
-                <td>{{ entity.paymentInfo }}</td>
-            </tr>
-            <tr>
-                <th>Paymentplanamount</th>
-                <td>{{ entity.paymentPlanAmount }}</td>
-            </tr>
-            <tr>
-                <th>Eo</th>
-                <td>{{ entity.eo }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="row">
+    <div class="col-lg-12">
+    <div role="tabpanel" style="margin-top:15px;">
+    <!-- Nav tabs -->
+    <ul class="nav nav-pills" role="tablist">
+        <li role="presentation" id="l001"  class="limenu active"><a href="#tab001" role="tab" data-toggle="tab">General</a></li>
+        <li role="presentation" id="l002" class="limenu"><a href="#tab002" role="tab" data-toggle="tab">Enrollment</a></li>
+        <li role="presentation" id="l003" class="limenu"><a href="#tab003" role="tab" data-toggle="tab">Financial</a></li>
+        <li role="presentation" id="l004" class="limenu"><a href="#tab004" role="tab" data-toggle="tab">Student Services</a></li>
+        {% if app.request.get('_route') == 'student_edit' %}
+            {% if entity.graduated %}
+                <li role="presentation" id="l005" class="limenu"><a href="#tab005" role="tab" data-toggle="tab">Graduated</a></li>
+            {% endif %}
+
+            {% if entity.dropInfo %}
+                <li role="presentation" id="l006" class="limenu"><a href="#tab006" role="tab" data-toggle="tab">Dropped</a></li>
+            {% endif %}
+        {% endif %}
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+
+    <!-- General -->
+    <div role="tabpanel" class="tab-pane" id="tab001">
+        <div class="form-horizontal">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h4 class="contacto-title" style="border-bottom: 1px solid #CCC;">General Information</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">CV#:</label>
+                        <div class="col-sm-9">{{ entity.cv }}</div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">First Name:</label>
+                        <div class="col-sm-9">{{ entity.firstName }}</div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Last Name:</label>
+                        <div class="col-sm-9">{{ entity.lastName}}</div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Home Phone:</label>
+                        <div class="col-sm-9">{{ entity.homePhone}}</div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Cell Phone:</label>
+                        <div class="col-sm-9">{{ entity.cellPhone}}</div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Email:</label>
+                        <div class="col-sm-9">{{ entity.email}}</div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Address:</label>
+                        <div class="col-sm-9">{{ entity.address}}</div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">City:</label>
+                        <div class="col-sm-9">{{ entity.city}}</div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">State:</label>
+                        <div class="col-sm-9">{{ entity.state}}</div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Zip Code:</label>
+                        <div class="col-sm-9">{{ entity.zip}}</div>
+                    </div>
+                </div>
+            </div>
+
+            <a href="{{ path('student_edit', {'id' : entity.id}) }}" class="btn btn-default active">Edit</a>
+            <a href="{{ path('student_drop', {'id' : entity.id}) }}" class="btn btn-default">Drop</a>
+
+        </div>
+    </div>
+
+    <!-- Enrollment -->
+    <div role="tabpanel" class="tab-pane active" id="tab002">
+        <div class="form-horizontal">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h4 class="contacto-title" style="border-bottom: 1px solid #CCC;">Enrollment Information</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Program:</label>
+                        <div class="col-sm-9">{{ entity.programsText }}</div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Schedule:</label>
+                        <div class="col-sm-9">{{ entity.schedulesText }}</div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">E/O:</label>
+                        <div class="col-sm-9">{{ entity.eo}}</div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Comments:</label>
+                        <div class="col-sm-9">{{ entity.comments}}</div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Start Date:</label>
+                        <div class="col-sm-9">{{ entity.startDate | date('Y/m/d')}}</div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">End Date:</label>
+                        <div class="col-sm-9">{{ entity.endDate | date('Y/m/d') }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Financial -->
+    <div role="tabpanel" class="tab-pane active" id="tab003">
+        <div class="form-horizontal">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h4 class="contacto-title" style="border-bottom: 1px solid #CCC;">Financial Information</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Payment:</label>
+                        <div class="col-sm-9">{{ entity.paymentInfo}}</div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Plan Amount:</label>
+                        <div class="col-sm-9">{{ entity.paymentPlanAmount}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Student Services -->
+    <div role="tabpanel" class="tab-pane active" id="tab004">
+        <div class="form-horizontal">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h4 class="contacto-title" style="border-bottom: 1px solid #CCC;">Student Services Information</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Status:</label>
+                        <div class="col-sm-9">{{ entity.status}}</div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Locker:</label>
+                        <div class="col-sm-9">{{ entity.locker}}</div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">CVS:</label>
+                        <div class="col-sm-9">{{ entity.cvs}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if app.request.get('_route') == 'student_edit' %}
+        {% if entity.graduated %}
+            <!-- Graduated -->
+            <div role="tabpanel" class="tab-pane active" id="tab005">
+                <div class="form-horizontal">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h4 class="contacto-title" style="border-bottom: 1px solid #CCC;">Graduated Information</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Company Name:</label>
+                                <div class="col-sm-9">{{ entity.graduated.companyName}}</div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Start Working Date:</label>
+                                <div class="col-sm-9">{{ entity.graduated.startWorking}}</div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Supervisor Phone:</label>
+                                <div class="col-sm-9">{{ entity.graduated.supervisorPhone}}</div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Printed Diploma Date:</label>
+                                <div class="col-sm-9">{{ entity.graduated.diplomaPrinted}}</div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Employment Status:</label>
+                                <div class="col-sm-9">{{ entity.graduated.employmentStatus}}</div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Job Title:</label>
+                                <div class="col-sm-9">{{ entity.graduated.jobTitle}}</div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Supervisor Name:</label>
+                                <div class="col-sm-9">{{ entity.graduated.supervisorName}}</div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Employeer Address:</label>
+                                <div class="col-sm-9">{{ entity.graduated.employerAddress}}</div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Licensed:</label>
+                                <div class="col-sm-9">{{ entity.graduated.licensed}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        {% if entity.dropInfo %}
+            <!-- Dropped -->
+            <div role="tabpanel" class="tab-pane active" id="tab006">
+                <div class="form-horizontal">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h4 class="contacto-title" style="border-bottom: 1px solid #CCC;">Drop Information</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Amount:</label>
+                                <div class="col-sm-9">{{ entity.dropInfo.amount}}</div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Check:</label>
+                                <div class="col-sm-9">{{ entity.dropInfo.check}}</div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Date:</label>
+                                <div class="col-sm-9">{{ entity.dropInfo.date}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    {% endif %}
+    </div>
+    </div>
+    </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts%}
+    {{ parent() }}
+    <script type="text/javascript">
+
+        function activateTab(tabId){
+            $('.tab-pane').removeClass('active');
+            $('.limenu').removeClass('active');
+            $('#tab00'+tabId).addClass('active');
+            $('#l00'+tabId).addClass('active');
+        }
+
+        $(document).ready(function() {
+            activateTab('1');
+
+        });
+    </script>
 
 {% endblock %}
