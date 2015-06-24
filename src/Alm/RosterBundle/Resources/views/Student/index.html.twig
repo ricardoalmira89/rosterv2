@@ -1,105 +1,43 @@
-{% extends '::base.html.twig' %}
+{% extends '@Roster/Form/index-layout.html.twig' %}
 
-{% block body -%}
-    <h1>Student list</h1>
+{% block confirm_delete %}Confirm deleting this student?{% endblock %}
 
-    <table class="records_list">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Lastname</th>
-                <th>Firstname</th>
-                <th>Email</th>
-                <th>Startdate</th>
-                <th>Enddate</th>
-                <th>Homephone</th>
-                <th>Bussinessphone</th>
-                <th>Cellphone</th>
-                <th>Faxnumber</th>
-                <th>Picture</th>
-                <th>Address</th>
-                <th>City</th>
-                <th>State</th>
-                <th>Zip</th>
-                <th>Country</th>
-                <th>Credittrans</th>
-                <th>Refered</th>
-                <th>Webpage</th>
-                <th>Notes</th>
-                <th>Attachment</th>
-                <th>Location</th>
-                <th>Status</th>
-                <th>Comments</th>
-                <th>Emergencycontactname</th>
-                <th>Emergencycontactphone1</th>
-                <th>Emergencycontactphone2</th>
-                <th>Emergencycontactphone3</th>
-                <th>Cv</th>
-                <th>Cvs</th>
-                <th>Middleinitial</th>
-                <th>Paymentinfo</th>
-                <th>Paymentplanamount</th>
-                <th>Eo</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td><a href="{{ path('student_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.lastName }}</td>
-                <td>{{ entity.firstName }}</td>
-                <td>{{ entity.email }}</td>
-                <td>{% if entity.startDate %}{{ entity.startDate|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if entity.endDate %}{{ entity.endDate|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ entity.homePhone }}</td>
-                <td>{{ entity.bussinessPhone }}</td>
-                <td>{{ entity.cellPhone }}</td>
-                <td>{{ entity.faxNumber }}</td>
-                <td>{{ entity.picture }}</td>
-                <td>{{ entity.address }}</td>
-                <td>{{ entity.city }}</td>
-                <td>{{ entity.state }}</td>
-                <td>{{ entity.zip }}</td>
-                <td>{{ entity.country }}</td>
-                <td>{{ entity.creditTrans }}</td>
-                <td>{{ entity.refered }}</td>
-                <td>{{ entity.webPage }}</td>
-                <td>{{ entity.notes }}</td>
-                <td>{{ entity.attachment }}</td>
-                <td>{{ entity.location }}</td>
-                <td>{{ entity.status }}</td>
-                <td>{{ entity.comments }}</td>
-                <td>{{ entity.emergencyContactName }}</td>
-                <td>{{ entity.emergencyContactPhone1 }}</td>
-                <td>{{ entity.emergencyContactPhone2 }}</td>
-                <td>{{ entity.emergencyContactPhone3 }}</td>
-                <td>{{ entity.cv }}</td>
-                <td>{{ entity.cvs }}</td>
-                <td>{{ entity.middleInitial }}</td>
-                <td>{{ entity.paymentInfo }}</td>
-                <td>{{ entity.paymentPlanAmount }}</td>
-                <td>{{ entity.eo }}</td>
-                <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('student_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('student_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+{% block text %}
+    <div class="row">
+        <div class="col-lg-12">
+            <h1>Es hora de trabajar!</h1>
+            <p>El contacto es la herramienta importante... <strong class="text-primary">entre ellos y nosostros!</strong> <a href="{{ path('student_new') }}" class="btn btn-default active pull-right text-normal"><span class="glyphicon glyphicon-plus"></span> Add Student</a></p>
+        </div>
+    </div>
+{% endblock %}
 
-        <ul>
-        <li>
-            <a href="{{ path('student_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
-    {% endblock %}
+{% block table_header %}
+    <th>Image</th>
+    <th>Name</th>
+    <th>Program</th>
+    <th>Schedule</th>
+    <th>Email</th>
+    <th>Start</th>
+    <th>End</th>
+    <th></th>
+{% endblock %}
+
+{% block table_body %}
+
+    <td>
+        {#{% if entity.picture %}#}
+            {#<img src="{{ asset(entity.webPath) }}" class="img-thumbnail" width="100" />#}
+        {#{% else %}#}
+            {#<img src="{{ asset('media/images/bg-select-image.png') }}" class="img-thumbnail" width="100" />#}
+        {#{% endif %}#}
+    </td>
+    <td>{{ entity }}</td>
+    <td>{{ entity.programsText }}</td>
+    <td>{{ entity.schedulesText }}</td>
+    <td>{{ entity.email }}</td>
+    <td>{{ entity.startDate | date('Y-m-d') }}</td>
+    <td>{{ entity.endDate | date('Y-m-d') }}</td>
+{% endblock %}
+
+
+{% block paginationText %}Sucursales{% endblock %}

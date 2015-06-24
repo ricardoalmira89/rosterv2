@@ -55,6 +55,10 @@ class Schedule
     private $program;
 
 
+    public function __toString(){
+        return $this->getName();
+    }
+
 
     /**
      * Set id

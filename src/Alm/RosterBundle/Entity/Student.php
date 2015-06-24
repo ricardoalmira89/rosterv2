@@ -301,12 +301,17 @@ class Student
     private $programs;
 
 
+    public function __toString(){
+        return $this->firstName.' '.$this->lastName;
+    }
+
     /**
      * Constructor
      */
     public function __construct()
     {
         $this->schedules = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->programs = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -1211,5 +1216,13 @@ class Student
     public function getPrograms()
     {
         return $this->programs;
+    }
+
+    public function getProgramsText(){
+        return 'programs/here';
+    }
+
+    public function getSchedulesText(){
+        return 'schedules/here';
     }
 }

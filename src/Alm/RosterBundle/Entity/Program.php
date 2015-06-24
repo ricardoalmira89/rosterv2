@@ -42,6 +42,10 @@ class Program
     private $schedules;
 
 
+    public function __toString(){
+        return $this->name;
+    }
+
     /**
      * Constructor
      */

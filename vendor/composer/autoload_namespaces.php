@@ -27,5 +27,7 @@ return array(
     'Doctrine\\Common\\' => array($vendorDir . '/doctrine/common/lib'),
     'Doctrine\\Bundle\\DoctrineCacheBundle' => array($vendorDir . '/doctrine/doctrine-cache-bundle'),
     'Assetic' => array($vendorDir . '/kriswallsmith/assetic/src'),
+    'Knp\\Bundle\\PaginatorBundle\\' => array($vendorDir . '/knp'),
+    'Knp\\Component' => array($vendorDir . '/knp-components/src'),
     '' => array($baseDir . '/src'),
 );

@@ -1,0 +1,25 @@
+# -- Symfony2 -----------------------------------------
+app/cache/*
+app/logs/*
+*.md
+*.php~
+*.yml
+
+# -- PHPUnit ------------------------------------------
+app/phpunit.xml  
+
+# -- Editores -----------------------------------------
+# phpstorm
+.idea/
+
+# -- Sistemas Operativos ------------------------------
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# -- Imagenes -----------------------------------------
+web/uploads/*
+
+app/config/parameters.yml

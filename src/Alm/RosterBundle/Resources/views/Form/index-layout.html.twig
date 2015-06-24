@@ -1,0 +1,80 @@
+{% extends '::base.html.twig' %}
+
+{% set entity_name = app.request.get('_route') %}
+
+{% block body -%}
+
+    {% block text %}
+    <div class="row">
+        <div class="col-lg-12">
+            <h1>Nada mejor clientes que las ofertas!</h1>
+            <p>Revise cuidadosamente las ofertas antes de envíar , de esta forma atraéra a los clientes que realmente  entén interesados en sus productos y/o servcios.</p>
+        </div>
+    </div>
+    {% endblock %}
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div role="tabpanel" style="margin-top:15px;">
+                {% block list_tabs %}
+
+                {% endblock %}
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="tab001">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                {% block table_header %}
+
+                                {% endblock %}
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for entity in pagination %}
+                                    <tr>
+                                        {% block table_body %}
+
+                                        {% endblock %}
+                                        <td>
+                                            <div class="btn-group pull-right">
+                                                <button type="button" class="btn btn-default active text-normal dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Ver</button>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <li><a href="{{ path( entity_name ~ '_show', {'id' : entity.id}) }}">Mostrar</a></li>
+                                                    <li><a href="{{ path( entity_name ~ '_edit', {'id' : entity.id}) }}">Editar</a></li>
+                                                    <li><a href="#" data-toggle="modal" data-target="#MDL-eliminar-{{ loop.index0 }}">Eliminar</a></li>
+                                                </ul>
+                                            </div>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="MDL-eliminar-{{ loop.index0 }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-body text-center">
+                                                            <h3 style="color:#ff7f00;">{% block confirm_delete %}{% endblock %}</h3>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                                            <a href="{{ path( entity_name ~ '_delete', {'id' : entity.id}) }}" class="btn btn-default">Eliminar</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+	<nav>
+		{{  knp_pagination_render(pagination) }}
+		<p class="text-center">{{ pagination | length }} Elementos</p>
+	</nav>
+{% endblock %}

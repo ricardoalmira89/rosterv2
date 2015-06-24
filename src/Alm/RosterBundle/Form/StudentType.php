@@ -18,8 +18,16 @@ class StudentType extends AbstractType
             ->add('lastName')
             ->add('firstName')
             ->add('email')
-            ->add('startDate')
-            ->add('endDate')
+            ->add('startDate', 'datetime',array(
+                'widget' => 'single_text',
+                'format' => 'yyyy/MM/dd',
+                'required' => true,
+            ))
+            ->add('endDate', 'datetime',array(
+                'widget' => 'single_text',
+                'format' => 'yyyy/MM/dd',
+                'required' => true,
+            ))
             ->add('homePhone')
             ->add('bussinessPhone')
             ->add('cellPhone')
@@ -48,9 +56,9 @@ class StudentType extends AbstractType
             ->add('paymentInfo')
             ->add('paymentPlanAmount')
             ->add('eo')
-            ->add('graduated')
+//            ->add('graduated')
             ->add('locker')
-            ->add('dropinfo')
+//            ->add('dropinfo')
             ->add('schedules')
             ->add('programs')
         ;
