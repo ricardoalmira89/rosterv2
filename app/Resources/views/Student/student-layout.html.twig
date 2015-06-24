@@ -8,17 +8,27 @@
     </div>
 
     <form action="{% block formAction %}{% endblock %}" method="post" {{ form_enctype(form) }}>
+    {% block hidden %}
+        <input type="hidden" name="_method" value="PUT" />
+    {% endblock %}
         <div class="row">
             <div class="col-lg-12">
                 <div role="tabpanel" style="margin-top:15px;">
                     <!-- Nav tabs -->
                     <ul class="nav nav-pills" role="tablist">
-                        <li role="presentation" class="active"><a href="#tab001" role="tab" data-toggle="tab">General</a></li>
-                        <li role="presentation"><a href="#tab002" role="tab" data-toggle="tab">Enrollment</a></li>
-                        <li role="presentation"><a href="#tab003" role="tab" data-toggle="tab">Financial</a></li>
-                        <li role="presentation"><a href="#tab004" role="tab" data-toggle="tab">Student Services</a></li>
-                        <li role="presentation"><a href="#tab005" role="tab" data-toggle="tab">Graduated</a></li>
-                        <li role="presentation"><a href="#tab006" role="tab" data-toggle="tab">Dropped</a></li>
+                        <li role="presentation" id="l001"  class="limenu active"><a href="#tab001" role="tab" data-toggle="tab">General</a></li>
+                        <li role="presentation" id="l002" class="limenu"><a href="#tab002" role="tab" data-toggle="tab">Enrollment</a></li>
+                        <li role="presentation" id="l003" class="limenu"><a href="#tab003" role="tab" data-toggle="tab">Financial</a></li>
+                        <li role="presentation" id="l004" class="limenu"><a href="#tab004" role="tab" data-toggle="tab">Student Services</a></li>
+                        {% if app.request.get('_route') == 'student_edit' %}
+                            {% if entity.graduated %}
+                                <li role="presentation" id="l005" class="limenu"><a href="#tab005" role="tab" data-toggle="tab">Graduated</a></li>
+                            {% endif %}
+
+                            {% if entity.dropInfo %}
+                                <li role="presentation" id="l006" class="limenu"><a href="#tab006" role="tab" data-toggle="tab">Dropped</a></li>
+                            {% endif %}
+                        {% endif %}
                     </ul>
 
                     <!-- Tab panes -->
@@ -103,7 +113,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <input type="submit" value="Enviar" class="btn btn-default active">
+                                <input type="submit" value="Enviar" class="btn btn-default active" id="submit-btn">
                             </div>
                         </div>
 
@@ -227,116 +237,170 @@
                             </div>
                         </div>
 
-                        <!-- Graduated -->
-                        <div role="tabpanel" class="tab-pane active" id="tab005">
-                            <div class="form-horizontal">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <h4 class="contacto-title" style="border-bottom: 1px solid #CCC;">Graduated Information</h4>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label">Company Name:</label>
-                                            <div class="col-sm-9">{{ form_widget(form.graduated.companyName) }}</div>
+                        {% if app.request.get('_route') == 'student_edit' %}
+                            {% if entity.graduated %}
+                            <!-- Graduated -->
+                                <div role="tabpanel" class="tab-pane active" id="tab005">
+                                <div class="form-horizontal">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <h4 class="contacto-title" style="border-bottom: 1px solid #CCC;">Graduated Information</h4>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Company Name:</label>
+                                                <div class="col-sm-9">{{ form_widget(form.graduated.companyName) }}</div>
+                                            </div>
+                                        </div>
 
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label">Start Working Date:</label>
-                                            <div class="col-sm-9">{{ form_widget(form.graduated.startWorking) }}</div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Start Working Date:</label>
+                                                <div class="col-sm-9">{{ form_widget(form.graduated.startWorking) }}</div>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label">Supervisor Phone:</label>
-                                            <div class="col-sm-9">{{ form_widget(form.graduated.supervisorPhone) }}</div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Supervisor Phone:</label>
+                                                <div class="col-sm-9">{{ form_widget(form.graduated.supervisorPhone) }}</div>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label">Printed Diploma Date:</label>
-                                            <div class="col-sm-9">{{ form_widget(form.graduated.diplomaPrinted) }}</div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Printed Diploma Date:</label>
+                                                <div class="col-sm-9">{{ form_widget(form.graduated.diplomaPrinted) }}</div>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label">Employment Status:</label>
-                                            <div class="col-sm-9">{{ form_widget(form.graduated.employmentStatus) }}</div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Employment Status:</label>
+                                                <div class="col-sm-9">{{ form_widget(form.graduated.employmentStatus) }}</div>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label">Job Title:</label>
-                                            <div class="col-sm-9">{{ form_widget(form.graduated.jobTitle) }}</div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Job Title:</label>
+                                                <div class="col-sm-9">{{ form_widget(form.graduated.jobTitle) }}</div>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label">Supervisor Name:</label>
-                                            <div class="col-sm-9">{{ form_widget(form.graduated.supervisorName) }}</div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Supervisor Name:</label>
+                                                <div class="col-sm-9">{{ form_widget(form.graduated.supervisorName) }}</div>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label">Employeer Address:</label>
-                                            <div class="col-sm-9">{{ form_widget(form.graduated.employerAddress) }}</div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Employeer Address:</label>
+                                                <div class="col-sm-9">{{ form_widget(form.graduated.employerAddress) }}</div>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label">Licensed:</label>
-                                            <div class="col-sm-9">{{ form_widget(form.graduated.licensed) }}</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Dropped -->
-                        <div role="tabpanel" class="tab-pane active" id="tab006">
-                            <div class="form-horizontal">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <h4 class="contacto-title" style="border-bottom: 1px solid #CCC;">Drop Information</h4>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label">Amount:</label>
-                                            <div class="col-sm-9">{{ form_widget(form.dropInfo.amount) }}</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label">Check:</label>
-                                            <div class="col-sm-9">{{ form_widget(form.dropInfo.check) }}</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label">Date:</label>
-                                            <div class="col-sm-9">{{ form_widget(form.dropInfo.date) }}</div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Licensed:</label>
+                                                <div class="col-sm-9">{{ form_widget(form.graduated.licensed) }}</div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                            {% endif %}
+
+                            {% if entity.graduated %}
+                                <!-- Dropped -->
+                                <div role="tabpanel" class="tab-pane active" id="tab006">
+                                    <div class="form-horizontal">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <h4 class="contacto-title" style="border-bottom: 1px solid #CCC;">Drop Information</h4>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="col-sm-3 control-label">Amount:</label>
+                                                    <div class="col-sm-9">{{ form_widget(form.dropInfo.amount) }}</div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="col-sm-3 control-label">Check:</label>
+                                                    <div class="col-sm-9">{{ form_widget(form.dropInfo.check) }}</div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="col-sm-3 control-label">Date:</label>
+                                                    <div class="col-sm-9">{{ form_widget(form.dropInfo.date) }}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endif %}
                     </div>
                 </div>
             </div>
         </div>
      </form>
+
+{% endblock %}
+
+{% block javascripts%}
+    {{ parent() }}
+    <script type="text/javascript">
+
+        function activateTab(tabId){
+            $('.tab-pane').removeClass('active');
+            $('.limenu').removeClass('active');
+            $('#tab00'+tabId).addClass('active');
+            $('#l00'+tabId).addClass('active');
+        }
+
+        function validateForm(){
+
+            if ($('#student_startDate').val() == '' || $('#student_endDate').val() == '') {
+                activateTab('2');
+            }
+
+            if ($('#student_graduated_startWorking').val() == '' || $('#student_graduated_diplomaPrinted').val() == '') {
+                activateTab('5');
+            }
+
+            if ($('#student_dropInfo_date').val() == '') {
+                activateTab('6');
+            }
+        }
+
+        $(document).ready(function() {
+
+            var programs = $('#student_programs');
+            var schedules = $('#student_schedules');
+
+            activateTab('1');
+
+            $('#submit-btn').click(function(){
+                validateForm();
+            });
+
+            programs.change(function(){
+                ajaxGetSchedules(programs, schedules, getSelectedComma(), '{{ path('ajax_schedules') }}');
+            })
+
+
+        });
+    </script>
 
 {% endblock %}

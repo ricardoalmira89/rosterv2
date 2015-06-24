@@ -28,12 +28,10 @@ class GraduatedType extends AbstractType
             ->add('diplomaPrinted', 'datetime',array(
                 'widget' => 'single_text',
                 'format' => 'yyyy/MM/dd',
-                'required' => true,
             ))
             ->add('startWorking', 'datetime',array(
                 'widget' => 'single_text',
                 'format' => 'yyyy/MM/dd',
-                'required' => true,
             ))
             ->add('supervisorPhone')
             ->add('supervisorName')

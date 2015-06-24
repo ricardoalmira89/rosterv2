@@ -53,8 +53,12 @@ class StudentController extends Controller
             $em->persist($entity);
             $em->flush();
 
+            $this->get('session')->getFlashBag()->add('notice','Student created successfully!');
+
             return $this->redirect($this->generateUrl('student_show', array('id' => $entity->getId())));
         }
+
+        $this->get('session')->getFlashBag()->add('error','Oops! An error has ocurred while trying to add a new student');
 
         return array(
             'entity' => $entity,
@@ -75,6 +79,9 @@ class StudentController extends Controller
             'action' => $this->generateUrl('student_create'),
             'method' => 'POST',
         ));
+
+        $form->remove('dropInfo')
+             ->remove('graduated');
 
         $form->add('submit', 'submit', array('label' => 'Create'));
 
@@ -142,7 +149,7 @@ class StudentController extends Controller
 
         return array(
             'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'form'   => $editForm->createView(),
         );
     }
 
@@ -161,6 +168,9 @@ class StudentController extends Controller
         ));
 
         $form->add('submit', 'submit', array('label' => 'Update'));
+
+        if (!$entity->getGraduated()) $form->remove('graduated');
+        if (!$entity->getDropinfo()) $form->remove('dropInfo');
 
         return $form;
     }
@@ -187,12 +197,15 @@ class StudentController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('student_edit', array('id' => $id)));
+            $this->get('session')->getFlashBag()->add('notice','Student updated successfully!');
+            return $this->redirect($this->generateUrl('student_show', array('id' => $id)));
         }
+
+        $this->get('session')->getFlashBag()->add('error','An error has ocurred while trying to update the student!');
 
         return array(
             'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'form'   => $editForm->createView(),
         );
     }
     /**

@@ -1,7 +1,2 @@
-{% extends '::base.html.twig' %}
-
-{% block body -%}
-    <h1>Student edit</h1>
-    {{ form(edit_form) }}
-    </ul>
-{% endblock %}
+{% extends ':Student:student-layout.html.twig' %}
+{% block formAction %}{{ path('student_update', {'id' : entity.id}) }}{% endblock %}

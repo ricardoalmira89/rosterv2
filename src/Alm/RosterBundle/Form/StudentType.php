@@ -22,12 +22,10 @@ class StudentType extends AbstractType
             ->add('startDate', 'datetime',array(
                 'widget' => 'single_text',
                 'format' => 'yyyy/MM/dd',
-                'required' => true,
             ))
             ->add('endDate', 'datetime',array(
                 'widget' => 'single_text',
                 'format' => 'yyyy/MM/dd',
-                'required' => true,
             ))
             ->add('homePhone')
             ->add('bussinessPhone')
@@ -71,7 +69,8 @@ class StudentType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Alm\RosterBundle\Entity\Student'
+            'data_class' => 'Alm\RosterBundle\Entity\Student',
+            'csrf_protection' => false
         ));
     }
 
@@ -80,6 +79,6 @@ class StudentType extends AbstractType
      */
     public function getName()
     {
-        return 'alm_rosterbundle_student';
+        return 'student';
     }
 }

@@ -255,7 +255,7 @@ class Student
     /**
      * @var \Graduated
      *
-     * @ORM\ManyToOne(targetEntity="Graduated")
+     * @ORM\ManyToOne(targetEntity="Graduated", cascade={"persist"})
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="graduated_id", referencedColumnName="id")
      * })
@@ -275,7 +275,7 @@ class Student
     /**
      * @var \DropInfo
      *
-     * @ORM\ManyToOne(targetEntity="DropInfo")
+     * @ORM\ManyToOne(targetEntity="DropInfo", cascade={"persist"})
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="dropinfo_id", referencedColumnName="id")
      * })

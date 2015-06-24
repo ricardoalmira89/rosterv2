@@ -20,7 +20,6 @@ class DropInfoType extends AbstractType
             ->add('date', 'datetime',array(
                 'widget' => 'single_text',
                 'format' => 'yyyy/MM/dd',
-                'required' => true,
             ))
             ->add('check')
             ->add('paid')
