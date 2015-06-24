@@ -199,7 +199,6 @@ class StudentController extends Controller
      * Deletes a Student entity.
      *
      * @Route("/delete/{id}", name="student_delete")
-     * @Method("DELETE")
      */
     public function deleteAction($id)
     {
