@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Schedule
  *
- * @ORM\Table(name="schedule", indexes={@ORM\Index(name="program_id", columns={"program_id"})})
+ * @ORM\Table(name="schedule")
  * @ORM\Entity
  */
 class Schedule
@@ -17,7 +17,7 @@ class Schedule
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
@@ -25,8 +25,6 @@ class Schedule
      * @var string
      *
      * @ORM\Column(name="slug", type="string", length=10, nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
      */
     private $slug;
 
