@@ -47,7 +47,7 @@ class Schedule
     /**
      * @var \Program
      *
-     * @ORM\ManyToOne(targetEntity="Program")
+     * @ORM\ManyToOne(targetEntity="Program", inversedBy="schedules")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="program_id", referencedColumnName="id")
      * })
@@ -55,4 +55,119 @@ class Schedule
     private $program;
 
 
+
+    /**
+     * Set id
+     *
+     * @param integer $id
+     * @return Schedule
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return Schedule
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Schedule
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set languages
+     *
+     * @param string $languages
+     * @return Schedule
+     */
+    public function setLanguages($languages)
+    {
+        $this->languages = $languages;
+
+        return $this;
+    }
+
+    /**
+     * Get languages
+     *
+     * @return string 
+     */
+    public function getLanguages()
+    {
+        return $this->languages;
+    }
+
+    /**
+     * Set program
+     *
+     * @param \Alm\RosterBundle\Entity\Program $program
+     * @return Schedule
+     */
+    public function setProgram(\Alm\RosterBundle\Entity\Program $program = null)
+    {
+        $this->program = $program;
+
+        return $this;
+    }
+
+    /**
+     * Get program
+     *
+     * @return \Alm\RosterBundle\Entity\Program 
+     */
+    public function getProgram()
+    {
+        return $this->program;
+    }
 }

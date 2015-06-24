@@ -35,5 +35,107 @@ class Program
      */
     private $slug;
 
+    /**
+     *
+     * @ORM\OneToMany(targetEntity="Alm\RosterBundle\Entity\Schedule", mappedBy="program")
+     */
+    private $schedules;
 
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->schedules = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Program
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return Program
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Add schedules
+     *
+     * @param \Alm\RosterBundle\Entity\Schedule $schedules
+     * @return Program
+     */
+    public function addSchedule(\Alm\RosterBundle\Entity\Schedule $schedules)
+    {
+        $this->schedules[] = $schedules;
+
+        return $this;
+    }
+
+    /**
+     * Remove schedules
+     *
+     * @param \Alm\RosterBundle\Entity\Schedule $schedules
+     */
+    public function removeSchedule(\Alm\RosterBundle\Entity\Schedule $schedules)
+    {
+        $this->schedules->removeElement($schedules);
+    }
+
+    /**
+     * Get schedules
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getSchedules()
+    {
+        return $this->schedules;
+    }
 }

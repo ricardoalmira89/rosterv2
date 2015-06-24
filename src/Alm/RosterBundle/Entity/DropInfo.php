@@ -57,4 +57,129 @@ class DropInfo
     private $paid;
 
 
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set refund
+     *
+     * @param boolean $refund
+     * @return DropInfo
+     */
+    public function setRefund($refund)
+    {
+        $this->refund = $refund;
+
+        return $this;
+    }
+
+    /**
+     * Get refund
+     *
+     * @return boolean 
+     */
+    public function getRefund()
+    {
+        return $this->refund;
+    }
+
+    /**
+     * Set amount
+     *
+     * @param integer $amount
+     * @return DropInfo
+     */
+    public function setAmount($amount)
+    {
+        $this->amount = $amount;
+
+        return $this;
+    }
+
+    /**
+     * Get amount
+     *
+     * @return integer 
+     */
+    public function getAmount()
+    {
+        return $this->amount;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     * @return DropInfo
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime 
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set check
+     *
+     * @param string $check
+     * @return DropInfo
+     */
+    public function setCheck($check)
+    {
+        $this->check = $check;
+
+        return $this;
+    }
+
+    /**
+     * Get check
+     *
+     * @return string 
+     */
+    public function getCheck()
+    {
+        return $this->check;
+    }
+
+    /**
+     * Set paid
+     *
+     * @param boolean $paid
+     * @return DropInfo
+     */
+    public function setPaid($paid)
+    {
+        $this->paid = $paid;
+
+        return $this;
+    }
+
+    /**
+     * Get paid
+     *
+     * @return boolean 
+     */
+    public function getPaid()
+    {
+        return $this->paid;
+    }
 }
