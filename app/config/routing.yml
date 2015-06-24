@@ -1,0 +1,5 @@
+roster:
+    resource: "@RosterBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
