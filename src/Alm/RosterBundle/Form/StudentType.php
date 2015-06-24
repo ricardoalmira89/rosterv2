@@ -3,6 +3,7 @@
 namespace Alm\RosterBundle\Form;
 
 use Alm\RosterBundle\Entity\DropInfo;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -56,7 +57,22 @@ class StudentType extends AbstractType
             ->add('paymentPlanAmount')
             ->add('eo')
             ->add('graduated', new GraduatedType())
-            ->add('locker')
+            ->add('locker', 'entity' , array(
+                'label' => false,
+                'class' => 'Alm\RosterBundle\Entity\Locker',
+                'empty_value' => 'Select Locker',
+                'required' => false,
+                'mapped' => true,
+                'property' => 'name',
+                'query_builder' => function(EntityRepository $er) use ($options){
+                    return $er->createQueryBuilder('l','s')
+                        ->leftJoin('l.student','s')
+                        ->where('s is null')
+                        ->orWhere('l.id = :lid')
+                        ->setParameter('lid', $options['lockerId'])
+                        ;
+                }
+            ))
             ->add('dropInfo', new DropInfoType())
             ->add('schedules')
             ->add('programs')
@@ -70,7 +86,8 @@ class StudentType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'Alm\RosterBundle\Entity\Student',
-            'csrf_protection' => false
+            'csrf_protection' => false,
+            'lockerId' => null
         ));
     }
 

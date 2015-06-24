@@ -265,7 +265,7 @@ class Student
     /**
      * @var \Locker
      *
-     * @ORM\ManyToOne(targetEntity="Locker")
+     * @ORM\ManyToOne(targetEntity="Locker", inversedBy="student")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="locker_id", referencedColumnName="id")
      * })

@@ -28,6 +28,12 @@ class Locker
      */
     private $name;
 
+    /**
+     * @var Student
+     * @ORM\OneToMany(targetEntity="Alm\RosterBundle\Entity\Student", mappedBy="locker", cascade={"persist"})
+     */
+    private $student;
+
 
 
     public function __toString(){
@@ -65,5 +71,45 @@ class Locker
     public function getName()
     {
         return $this->name;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->student = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add student
+     *
+     * @param \Alm\RosterBundle\Entity\Student $student
+     * @return Locker
+     */
+    public function addStudent(\Alm\RosterBundle\Entity\Student $student)
+    {
+        $this->student[] = $student;
+
+        return $this;
+    }
+
+    /**
+     * Remove student
+     *
+     * @param \Alm\RosterBundle\Entity\Student $student
+     */
+    public function removeStudent(\Alm\RosterBundle\Entity\Student $student)
+    {
+        $this->student->removeElement($student);
+    }
+
+    /**
+     * Get student
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getStudent()
+    {
+        return $this->student;
     }
 }

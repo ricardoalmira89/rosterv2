@@ -315,7 +315,7 @@
                             </div>
                             {% endif %}
 
-                            {% if entity.graduated %}
+                            {% if entity.dropInfo %}
                                 <!-- Dropped -->
                                 <div role="tabpanel" class="tab-pane active" id="tab006">
                                     <div class="form-horizontal">
@@ -390,6 +390,8 @@
             var schedules = $('#student_schedules');
 
             activateTab('1');
+
+            $("#student_locker option[value="+$('')+"]").attr("selected","selected");
 
             $('#submit-btn').click(function(){
                 validateForm();

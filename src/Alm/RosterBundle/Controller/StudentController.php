@@ -165,6 +165,7 @@ class StudentController extends Controller
         $form = $this->createForm(new StudentType(), $entity, array(
             'action' => $this->generateUrl('student_update', array('id' => $entity->getId())),
             'method' => 'PUT',
+            'lockerId' => $entity->getLocker()->getId()
         ));
 
         $form->add('submit', 'submit', array('label' => 'Update'));
