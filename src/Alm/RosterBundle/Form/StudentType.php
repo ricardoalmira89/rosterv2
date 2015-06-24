@@ -2,6 +2,7 @@
 
 namespace Alm\RosterBundle\Form;
 
+use Alm\RosterBundle\Entity\DropInfo;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -56,9 +57,9 @@ class StudentType extends AbstractType
             ->add('paymentInfo')
             ->add('paymentPlanAmount')
             ->add('eo')
-//            ->add('graduated')
+            ->add('graduated', new GraduatedType())
             ->add('locker')
-//            ->add('dropinfo')
+            ->add('dropInfo', new DropInfoType())
             ->add('schedules')
             ->add('programs')
         ;

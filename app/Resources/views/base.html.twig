@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>CheckEngine</title>
+		<title>Christine Valmy - Roster</title>
 
 		{% block stylesheets %}
 			<!-- Bootstrap -->
@@ -25,20 +25,20 @@
 
 	{% set route = app.request.get('_route') %}
 
-	{% if (route == 'homepage'
-		or route == 'fos_user_resetting_request'
-		or route == 'terms_and_conditions'
-		or route == 'fos_user_security_login'
-		or route == 'front_contacto_new'
-	) %}
+	{#{% if (route == 'homepage'#}
+		{#or route == 'fos_user_resetting_request'#}
+		{#or route == 'terms_and_conditions'#}
+		{#or route == 'fos_user_security_login'#}
+		{#or route == 'front_contacto_new'#}
+	{#) %}#}
 		{% set bodyType = 'landing' %}
-	{% else %}
-		{% set bodyType = 'app' %}
-	{% endif %}
+	{#{% else %}#}
+		{#{% set bodyType = 'app' %}#}
+	{#{% endif %}#}
 	<body id="{{ bodyType }}" role="document">
 	{% include 'header.html.twig' %}
 	<div class="container" role="main">
-        {% if bodyType == 'app' or is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        {#{% if bodyType == 'app' or is_granted("IS_AUTHENTICATED_REMEMBERED") %}#}
         <div class="row mainMenu">
             <div class="col-lg-12">
                     {#{% if is_granted("ROLE_MASTER") %}#}
@@ -55,7 +55,7 @@
                 {% include 'menu.html.twig' %}
             </div>
         </div>
-        {% endif %}
+        {#{% endif %}#}
 
         {% for flashMessage in app.session.flashbag.get('notice') %}
             <div class="alert alert-success" style="margin-top: 10px;">
