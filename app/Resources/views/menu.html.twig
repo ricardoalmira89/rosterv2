@@ -1,7 +1,9 @@
-
-		<div class="btn-group">
-			<a href="{{ path('student') }}" class="btn btn-default" aria-expanded="false">Students</a>
-		</div>
+        <div class="btn-group">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Students</button>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="{{ path('student_new') }}" title="Nuevo banner">New</a></li>
+            </ul>
+        </div>
 
         <div class="btn-group">
             <a href="{{ path('program') }}" class="btn btn-default" aria-expanded="false">Programs</a>
@@ -18,8 +20,9 @@
 		<div class="btn-group">
 			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Reports</button>
 			<ul class="dropdown-menu" role="menu">
-				<li><a href="#" title="Nuevo banner">Report 1</a></li>
-				<li><a href="#" title="Nueva Oferta">Report 2</a></li>
+				<li><a href="{{ path('report_attendance_sheet') }}" title="Nuevo banner">Attendance Sheet</a></li>
+				<li><a href="#" title="Nueva Oferta">Class List</a></li>
+				<li><a href="#" title="Nueva Oferta">Student Id</a></li>
 			</ul>
 		</div>
 

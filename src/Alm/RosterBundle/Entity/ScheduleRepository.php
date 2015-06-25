@@ -28,4 +28,17 @@ class ScheduleRepository extends EntityRepository{
         return $q->getQuery()->getArrayResult();
     }
 
+    public function getSchedules2($programId){
+
+        $q = $this->createQueryBuilder('s')
+            ->select('s','p')
+            ->innerJoin('s.program','p')
+            ->where('p = :pid')
+            ->setParameter('pid',$programId)
+        ;
+
+
+        return $q->getQuery()->getArrayResult();
+    }
+
 }

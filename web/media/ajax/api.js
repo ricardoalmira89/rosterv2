@@ -41,6 +41,24 @@
         });
     }
 
+    function ajaxGetSchedules2(master, slave, path) {
+        $.ajax({
+            url: path,
+            data: {program: master.val()},
+            dataType: 'json',
+            success: function (json) {
+                var schedules = JSON.parse(json).schedules;
+                var options = '';
+
+                for (i = 0; i < schedules.length; i++) {
+                    options += '<option value="' + schedules[i].id + '">' + schedules[i].name + '</option>';
+                 }
+
+                return slave.html(options);
+            }
+        });
+    }
+
 
     function getSelectedComma(){
         var selected = '';

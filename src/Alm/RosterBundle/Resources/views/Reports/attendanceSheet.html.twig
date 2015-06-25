@@ -1,0 +1,69 @@
+{% extends '::base.html.twig' %}
+{% block bodyHeader %}{% endblock %}
+{% block body %}
+
+
+    <div class="col-md-8 col-lg-offset-2" style="padding-bottom: 20px">
+        <form action="{{ path('report_attendance_sheet') }}" method="post" {{ form_enctype(form) }}>
+
+            <div class="col-sm-4">
+                <div class="col-sm-3" style="padding-top: 4px"><label>Program: </label></div>
+                <div class="col-sm-8">{{ form_widget(form.program) }}</div>
+            </div>
+            <div class="col-sm-4">
+                <div class="col-sm-3" style="padding-top: 4px"><label>Schedule: </label></div>
+                <div class="col-sm-8">{{ form_widget(form.schedule) }}</div>
+            </div>
+            <div class="col-sm-4">
+                <div class="col-sm-4" style="padding-top: 4px"><label style="font-size: 13px">Start Date: </label></div>
+                <div class="col-sm-8">{{ form_widget(form.startDate) }}</div>
+            </div>
+        </form>
+    </div>
+    <br>
+
+    <div class="col-md-8 col-lg-offset-2" style="padding-bottom: 20px">
+        <table class="table table-bordered">
+            <tr>
+                <td>CV#</td>
+                <td>Last Name</td>
+                <td>First Name</td>
+                <td>Time In</td>
+                <td>Time Out</td>
+                <td>Total Ours</td>
+                <td>Instructor Signature</td>
+
+            </tr>
+            {% for entity in entities %}
+            <tr>
+                <td>{{ entity.cv }}</td>
+                <td>{{ entity.lastName }}</td>
+                <td>{{ entity.firstName }}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}
+
+{% block javascripts%}
+    {{ parent() }}
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+
+            var programs = $('#form_program');
+            var schedules = $('#form_schedule');
+
+            programs.change(function(){
+                ajaxGetSchedules2(programs, schedules, '{{ path('ajax_schedules2') }}');
+            })
+
+
+        });
+    </script>
+
+{% endblock %}
