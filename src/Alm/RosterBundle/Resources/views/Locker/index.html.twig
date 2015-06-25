@@ -20,9 +20,13 @@
 
 {% block table_body %}
     <td>{{ entity }}</td>
-    <td>ocupado por fulana de tal</td>
-
+    <td>
+        {% if entity.student %}
+            {{ entity.student }}
+        {% else %}
+            Free Locker
+        {% endif %}
+    </td>
 {% endblock %}
-
 
 {% block paginationText %}Lockers{% endblock %}
