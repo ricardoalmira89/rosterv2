@@ -24,26 +24,35 @@ class StudentController extends Controller
      * Lists all Student entities.
      *
      * @Route("/", name="student")
-     * @Method("GET")
      * @Template()
      */
     public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
+        $form = $this->createFormBuilder()
+            ->add('criteria', null, array(
+                  'required' => false
+            ))
+            ->getForm();
+
+        $form->handleRequest($request);
 
         $entities = $em->getRepository('RosterBundle:Student')->findAll();
         if ($request->getMethod() == 'POST'){
+
+            $entities = $em->getRepository('RosterBundle:Student')->findStudents($form->get('criteria')->getData());
 
         }
 
         return array(
             'pagination' => $this->get('knp_paginator')->paginate($entities, $this->get('request')->query->get('page', 1), 15),
+            'form' => $form->createView()
         );
     }
     /**
      * Creates a new Student entity.
      *
-     * @Route("/", name="student_create")
+     * @Route("/create", name="student_create")
      * @Method("POST")
      * @Template("RosterBundle:Student:new.html.twig")
      */
