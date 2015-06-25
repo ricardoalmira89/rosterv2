@@ -44,7 +44,10 @@
                                                 <ul class="dropdown-menu" role="menu">
                                                     <li><a href="{{ path( entity_name ~ '_show', {'id' : entity.id}) }}">Show</a></li>
                                                     <li><a href="{{ path( entity_name ~ '_edit', {'id' : entity.id}) }}">Edit</a></li>
-                                                    <li><a href="#" data-toggle="modal" data-target="#MDL-eliminar-{{ loop.index0 }}">Delete</a></li>
+                                                    {% block delete %}
+                                                        <li><a href="#" data-toggle="modal" data-target="#MDL-eliminar-{{ loop.index0 }}">Delete</a></li>
+                                                    {% endblock %}
+                                                    {% block buttons %}{% endblock %}
                                                 </ul>
                                             </div>
                                             <!-- Modal -->

@@ -39,5 +39,9 @@
     <td>{{ entity.endDate | date('Y-m-d') }}</td>
 {% endblock %}
 
-
-{% block paginationText %}Sucursales{% endblock %}
+{% block delete %}{% endblock %}
+{% block buttons %}
+    {% if not entity.dropInfo %}
+    <li><a href="{{ path( entity_name ~ '_drop', {'id' : entity.id}) }}">Drop</a></li>
+    {% endif %}
+{% endblock %}
