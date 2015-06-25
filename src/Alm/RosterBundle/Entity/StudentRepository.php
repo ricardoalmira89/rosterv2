@@ -13,11 +13,11 @@ use Doctrine\ORM\EntityRepository;
 class StudentRepository extends EntityRepository{
 
 
-    public function findStudents($criteria){
+    public function studentsSimpleSearch($criteria){
 
         $q = $this->createQueryBuilder('s')
              ->where('s.cv = :c')
-             ->orWhere('s.email = :c')
+             ->orWhere('s.email LIKE :c')
              ->orWhere('s.firstName LIKE :c')
              ->orWhere('s.lastName LIKE :c')
              ->setParameter('c','%'.$criteria.'%');

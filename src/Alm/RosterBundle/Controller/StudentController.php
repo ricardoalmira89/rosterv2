@@ -30,8 +30,18 @@ class StudentController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $form = $this->createFormBuilder()
-            ->add('criteria', null, array(
-                  'required' => false
+            ->add('criteria', 'search', array(
+                  'required' => false))
+            ->add('fields', 'choice', array(
+                'choices' => array(
+                    'cv' => 'CV#',
+                    'email' => 'Email',
+                    'firstName' => 'First Name',
+                    'lastName' => 'Last Name',
+                ),
+                'expanded' => false,
+                'required' => false,
+                'empty_value' => 'Select Field'
             ))
             ->getForm();
 
@@ -40,7 +50,11 @@ class StudentController extends Controller
         $entities = $em->getRepository('RosterBundle:Student')->findAll();
         if ($request->getMethod() == 'POST'){
 
-            $entities = $em->getRepository('RosterBundle:Student')->findStudents($form->get('criteria')->getData());
+            $field = $form->get('fields')->getData();
+            if ($field){
+                $entities = $em->getRepository('RosterBundle:Student')->findBy(array($field => $form->get('criteria')->getData()));
+            } else
+                $entities = $em->getRepository('RosterBundle:Student')->studentsSimpleSearch($form->get('criteria')->getData());
 
         }
 
