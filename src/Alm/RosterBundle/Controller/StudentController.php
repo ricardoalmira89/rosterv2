@@ -27,11 +27,14 @@ class StudentController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('RosterBundle:Student')->findAll();
+        if ($request->getMethod() == 'POST'){
+
+        }
 
         return array(
             'pagination' => $this->get('knp_paginator')->paginate($entities, $this->get('request')->query->get('page', 1), 15),

@@ -25,11 +25,11 @@
 {% block table_body %}
 
     <td>
-        {#{% if entity.picture %}#}
-            {#<img src="{{ asset(entity.webPath) }}" class="img-thumbnail" width="100" />#}
-        {#{% else %}#}
-            {#<img src="{{ asset('media/images/bg-select-image.png') }}" class="img-thumbnail" width="100" />#}
-        {#{% endif %}#}
+        {% if entity.picture %}
+            <img src="{{ asset(entity.webPath) }}" class="img-thumbnail" width="100" />
+        {% else %}
+            <img src="{{ asset('media/images/image-usuario.png') }}" class="img-thumbnail" width="100" />
+        {% endif %}
     </td>
     <td>{{ entity }}</td>
     <td>{{ entity.programsText }}</td>
