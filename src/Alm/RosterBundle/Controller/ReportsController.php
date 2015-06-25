@@ -26,7 +26,6 @@ class ReportsController extends Controller
 
 
         $em = $this->getDoctrine()->getManager();
-        $entities = $em->getRepository('RosterBundle:Student')->findAll();
 
         $form = $this->createFormBuilder()
             ->add('program', 'entity', array(
@@ -43,6 +42,20 @@ class ReportsController extends Controller
                 'format' => 'yyyy/MM/dd',
             ))
             ->getForm();
+
+        $form->handleRequest($request);
+
+        $entities = $em->getRepository('RosterBundle:Student')->findAll();
+
+        if ($request->getMethod() == 'POST'){
+            $entities = $em->getRepository('RosterBundle:Student')->reportAttendanceSheet(
+                $form->get('program')->getData(),
+                $form->get('schedule')->getData(),
+                $form->get('startDate')->getData()
+            );
+
+        }
+
 
         return array(
             'entities' => $entities,

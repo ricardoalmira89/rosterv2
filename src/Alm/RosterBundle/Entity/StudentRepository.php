@@ -25,4 +25,21 @@ class StudentRepository extends EntityRepository{
         return $q->getQuery()->getResult();
     }
 
+    public function reportAttendanceSheet($program, $schedule, $startDate){
+
+        $q = $this->createQueryBuilder('s')
+            ->leftJoin('s.programs','p')
+            ->leftJoin('s.schedules','sc')
+            ->where('p = :p')
+            ->andWhere('sc = :sc')
+            ->andWhere('s.startDate = :sd')
+            ->setParameter('p',$program)
+            ->setParameter('sc',$schedule)
+            ->setParameter('sd',$startDate);
+
+        return $q->getQuery()->getResult();
+
+
+    }
+
 }
