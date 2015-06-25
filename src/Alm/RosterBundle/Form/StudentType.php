@@ -32,7 +32,6 @@ class StudentType extends AbstractType
             ->add('bussinessPhone')
             ->add('cellPhone')
             ->add('faxNumber')
-            ->add('picture')
             ->add('address')
             ->add('city')
             ->add('state')
