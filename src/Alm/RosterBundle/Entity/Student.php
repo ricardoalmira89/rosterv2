@@ -1229,11 +1229,21 @@ class Student
     }
 
     public function getProgramsText(){
-        return 'programs/here';
+        $programs = '';
+
+        foreach ( $this->programs as $program)
+            $programs .= $program.'/';
+
+        return  $programs;
     }
 
     public function getSchedulesText(){
-        return 'schedules/here';
+        $schedules = '';
+
+        foreach ( $this->schedules as $schedule)
+            $schedules .= $schedule->getSlug().'/';
+
+        return  $schedules;
     }
 
 
