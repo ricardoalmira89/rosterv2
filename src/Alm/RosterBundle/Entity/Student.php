@@ -3,12 +3,15 @@
 namespace Alm\RosterBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Student
  *
  * @ORM\Table(name="student", indexes={@ORM\Index(name="fk_student_graduated", columns={"graduated_id"}), @ORM\Index(name="fk_student_enrollmentofficer", columns={"EO"}), @ORM\Index(name="fk_sudent_dropinfo", columns={"dropinfo_id"}), @ORM\Index(name="fk_student_locker", columns={"locker_id"})})
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks
  */
 class Student
 {
@@ -87,7 +90,7 @@ class Student
     /**
      * @var string
      *
-     * @ORM\Column(name="picture", type="blob", nullable=true)
+     * @ORM\Column(name="picture", type="string", length=255, nullable=true)
      */
     private $picture;
 
@@ -299,6 +302,13 @@ class Student
      * )
      */
     private $programs;
+
+    private $temp;
+
+    /**
+     * @Assert\File(maxSize="6000000")
+     */
+    private $file;
 
 
     public function __toString(){
@@ -1224,5 +1234,85 @@ class Student
 
     public function getSchedulesText(){
         return 'schedules/here';
+    }
+
+
+
+
+
+
+    /*******************************************************************************************************************/
+    public function getAbsolutePath()
+    {
+        return null === $this->picture ? null : $this->getUploadRootDir() . '/' . $this->picture;
+    }
+
+    public function getWebPath()
+    {
+        return null === $this->picture ? null : $this->getUploadDir() . '/' . $this->picture;
+    }
+
+    protected function getUploadRootDir()
+    {
+        return __DIR__ . '/../../../../web/' . $this->getUploadDir();
+    }
+
+    protected function getUploadDir()
+    {
+        return 'uploads/students';
+    }
+
+    /**
+     * Sets file.
+     *
+     * @param UploadedFile $file
+     */
+    public function setFile(UploadedFile $file = null)
+    {
+        $this->file = $file;
+        if (isset($this->picture)) {
+            $this->temp = $this->picture;
+            $this->picture = null;
+        } else {
+            $this->picture = 'initial';
+        }
+    }
+
+    /**
+     * Get file.
+     *
+     * @return UploadedFile
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function preUpload()
+    {
+        if (null !== $this->getFile()) {
+            $filename = sha1(uniqid(mt_rand(), true));
+            $this->picture = $filename . '.' . $this->getFile()->guessExtension();
+        }
+    }
+
+    /**
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */
+    public function upload()
+    {
+        if (null === $this->getFile()) {
+            return;
+        }
+        $this->getFile()->move($this->getUploadRootDir(), $this->picture);
+        if (isset($this->temp)) {
+            $this->temp = null;
+        }
+        $this->file = null;
     }
 }

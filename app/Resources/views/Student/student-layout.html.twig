@@ -42,6 +42,35 @@
                                         <h4 class="contacto-title" style="border-bottom: 1px solid #CCC;">General Information</h4>
                                     </div>
                                 </div>
+
+                                <!-- Image -->
+                                <div class="row col-sm-6">
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Image:</label>
+                                        <div class="col-sm-9">
+                                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                <div class="fileinput-new thumbnail" style="width:100px; height:100px;">
+                                                    {% if entity.picture %}
+                                                        <img alt="perfil" src="{{ asset(entity.WebPath) }}">
+                                                    {% else %}
+                                                        <img alt="perfil" src="{{ asset('media/images/bg-select-image.png') }}">
+                                                    {% endif %}
+                                                </div>
+                                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width:100px; min-width:100px; max-height:100px;"></div>
+
+                                                <div>
+                                                    <p class="help-block">Image should be 100x100 in .jpg .gif o .png format.</p>
+											<span class="btn btn-default btn-file text-normal"><span class="fileinput-new">Select Picture</span>
+												<span class="fileinput-exists">Change</span>
+                                                {{ form_widget(form.file) }}
+											</span>
+                                                    <a href="#" class="btn btn-default text-normal fileinput-exists" data-dismiss="fileinput">Remove</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
@@ -405,7 +434,7 @@
 
             activateTab('1');
 
-            $("#student_locker option[value="+$('')+"]").attr("selected","selected");
+//            $("#student_locker option[value="+$('')+"]").attr("selected","selected");
 
             $('#submit-btn').click(function(){
                 validateForm();

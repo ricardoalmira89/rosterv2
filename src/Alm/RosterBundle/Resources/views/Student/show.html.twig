@@ -12,7 +12,6 @@
         <li role="presentation" id="l002" class="limenu"><a href="#tab002" role="tab" data-toggle="tab">Enrollment</a></li>
         <li role="presentation" id="l003" class="limenu"><a href="#tab003" role="tab" data-toggle="tab">Financial</a></li>
         <li role="presentation" id="l004" class="limenu"><a href="#tab004" role="tab" data-toggle="tab">Student Services</a></li>
-        {% if app.request.get('_route') == 'student_edit' %}
             {% if entity.graduated %}
                 <li role="presentation" id="l005" class="limenu"><a href="#tab005" role="tab" data-toggle="tab">Graduated</a></li>
             {% endif %}
@@ -20,7 +19,6 @@
             {% if entity.dropInfo %}
                 <li role="presentation" id="l006" class="limenu"><a href="#tab006" role="tab" data-toggle="tab">Dropped</a></li>
             {% endif %}
-        {% endif %}
     </ul>
 
     <!-- Tab panes -->
@@ -34,6 +32,26 @@
                     <h4 class="contacto-title" style="border-bottom: 1px solid #CCC;">General Information</h4>
                 </div>
             </div>
+
+            <!-- Image -->
+            <div class="row col-sm-6">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Image:</label>
+                    <div class="col-sm-9">
+                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                            <div class="fileinput-new thumbnail" style="width:100px; height:100px;">
+                                {% if entity.picture %}
+                                    <img alt="perfil" src="{{ asset(entity.WebPath) }}">
+                                {% else %}
+                                    <img alt="perfil" src="{{ asset('media/images/bg-select-image.png') }}">
+                                {% endif %}
+                            </div>
+                            <div class="fileinput-preview fileinput-exists thumbnail" style="max-width:100px; min-width:100px; max-height:100px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group">
@@ -107,7 +125,9 @@
             </div>
 
             <a href="{{ path('student_edit', {'id' : entity.id}) }}" class="btn btn-default active">Edit</a>
+            {% if not entity.dropInfo %}
             <a href="{{ path('student_drop', {'id' : entity.id}) }}" class="btn btn-default">Drop</a>
+            {% endif %}
 
         </div>
     </div>
@@ -225,7 +245,6 @@
         </div>
     </div>
 
-    {% if app.request.get('_route') == 'student_edit' %}
         {% if entity.graduated %}
             <!-- Graduated -->
             <div role="tabpanel" class="tab-pane active" id="tab005">
@@ -246,7 +265,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Start Working Date:</label>
-                                <div class="col-sm-9">{{ entity.graduated.startWorking}}</div>
+                                <div class="col-sm-9">{{ entity.graduated.startWorking | date('Y/m/d')}}</div>
                             </div>
                         </div>
 
@@ -260,7 +279,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Printed Diploma Date:</label>
-                                <div class="col-sm-9">{{ entity.graduated.diplomaPrinted}}</div>
+                                <div class="col-sm-9">{{ entity.graduated.diplomaPrinted | date('Y/m/d')}}</div>
                             </div>
                         </div>
 
@@ -330,14 +349,13 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Date:</label>
-                                <div class="col-sm-9">{{ entity.dropInfo.date}}</div>
+                                <div class="col-sm-9">{{ entity.dropInfo.date | date('Y/m/d')}}</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         {% endif %}
-    {% endif %}
     </div>
     </div>
     </div>
