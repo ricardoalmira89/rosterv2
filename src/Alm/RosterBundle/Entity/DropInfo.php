@@ -45,7 +45,7 @@ class DropInfo
     /**
      * @var string
      *
-     * @ORM\Column(name="check", type="string", length=255, nullable=true)
+     * @ORM\Column(name="cheque", type="string", length=255, nullable=true)
      */
     private $check;
 
@@ -153,7 +153,7 @@ class DropInfo
     /**
      * Get check
      *
-     * @return string 
+     * @return string
      */
     public function getCheck()
     {

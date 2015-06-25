@@ -2,6 +2,7 @@
 
 namespace Alm\RosterBundle\Controller;
 
+use Alm\RosterBundle\Entity\DropInfo;
 use Alm\RosterBundle\Form\DropInfoType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -242,13 +243,8 @@ class StudentController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('RosterBundle:Student')->find($id);
-        $dropInfo = $entity->getDropInfo();
-
+        $dropInfo = new DropInfo();
         $form = $this->createForm(new DropInfoType(), $dropInfo);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Student entity.');
-        }
 
         $form->handleRequest($request);
 
@@ -263,8 +259,8 @@ class StudentController extends Controller
         }
 
         return array(
-            'entity'      => $entity,
-            'form'   => $form->createView(),
+            'entity'   => $entity,
+            'form'     => $form->createView(),
         );
 
     }
