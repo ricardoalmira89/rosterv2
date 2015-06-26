@@ -1,0 +1,27 @@
+<form action="{{ path("fos_user_security_check") }}" method="post">
+	<input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+	<div class="col-lg-12">
+		<div class="input-group">
+			<span class="input-group-addon glyphicon glyphicon-user" id="usuario"></span>
+			<input type="text" id="username" name="_username" value="{{ last_username }}" required="required" class="form-control" placeholder="Usuario" aria-describedby="usuario" />
+		</div>
+	</div>
+	<div class="col-lg-12">
+		<div class="input-group">
+			<span class="input-group-addon glyphicon glyphicon glyphicon-asterisk" id="clave"></span>
+			<input type="password" id="password" name="_password" required="required" class="form-control" placeholder="Clave" aria-describedby="clave" />
+		</div>
+	</div>
+	<div class="col-lg-12">
+		<p class="text-center"><a href="{{ path('fos_user_resetting_request') }}" class="links">Olvidé mi clave</a></p>
+	</div>
+	<div class="col-lg-12">
+		<p class="text-center">
+			<input type="submit" id="_submit" name="_submit" value="Iniciar sesión" class="btn btn-lg btn-primary"/>
+		</p>
+	</div>
+	{#<div class="col-lg-12">#}
+		{#<p class="text-center"><a href="{{ path('terms_and_conditions') }}" class="links">Términos y Condiciones</a></p>#}
+	{#</div>#}
+</form>
+

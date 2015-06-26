@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="lynxoft_user.registration.form.type" class="Alm\UserBundle\Form\Type\RegistrationFormType">
+            <tag name="form.type" alias="lynxoft_user_registration" />
+        </service>
+        <service id="lynxoft_user.profile.form.type" class="Alm\UserBundle\Form\Type\ProfileFormType">
+            <tag name="form.type" alias="lynxoft_user_profile" />
+        </service>
+    </services>
+
+
+</container>

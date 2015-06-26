@@ -1,0 +1,8 @@
+{% trans_default_domain 'UserBundle' %}
+
+<h1>Registrar usuario</h1>
+
+<form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
+    {{ form_widget(form) }}
+	<button type="submit" class="btn btn-default active">Guardar</button>
+</form>
