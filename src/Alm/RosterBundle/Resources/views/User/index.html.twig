@@ -1,10 +1,9 @@
 {% extends '@Roster/Form/index-layout.html.twig' %}
 
-{% block text %}{% endblock %}
-{% block nuevaOpcion %}
+{% block buttons %}
 <li><a href="{{ path('usuario_change_password', {'id' : entity.id}) }}">Cambiar contraseña</a></li>
 {% endblock %}
-{% block textAdmin %}
+{% block text %}
 	<div class="row">
 		<div class="col-lg-12">
 			<h1>Es hora de trabajar!</h1>
