@@ -64,6 +64,26 @@ class ReportsController extends Controller
 
     }
 
+    /**
+     * @Route("/studentid/{id}", name="report_student_id")
+     * @Template()
+     */
+    public function studentIdAction($id){
+
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('RosterBundle:Student')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Student entity.');
+        }
+
+        return array(
+            'entity'      => $entity,
+        );
+
+    }
+
 
 
 }

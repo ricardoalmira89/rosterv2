@@ -1,0 +1,12 @@
+{% extends '::base.html.twig' %}
+{% block bodyHeader %}{% endblock %}
+{% block body %}
+
+            {% if entity.picture %}
+                <img src="{{ asset(entity.webPath) }}" class="img-thumbnail" width="50" />
+            {% else %}
+                <img src="{{ asset('media/images/image-usuario.png') }}" class="img-thumbnail" width="50" />
+            {% endif %}
+
+
+{% endblock %}
