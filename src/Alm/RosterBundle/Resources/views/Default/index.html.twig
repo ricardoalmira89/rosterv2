@@ -1,1 +1,9 @@
-Hello {{ name }}!
+{% extends '::base.html.twig' %}
+{% block body %}
+
+    <div class="col-md-5 col-md-offset-3" style="margin-top: 10%">
+        <img src="{{ asset('media/images/logo.png') }}" alt="Christine Valmy Logo" width="500">
+    </div>
+
+
+{% endblock %}
