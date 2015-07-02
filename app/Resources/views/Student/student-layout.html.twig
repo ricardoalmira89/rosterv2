@@ -261,15 +261,28 @@
 
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label">CVS:</label>
-                                            <div class="col-sm-9">{{ form_widget(form.cvs) }}</div>
+                                            <label class="col-sm-3 control-label">Location:</label>
+                                            <div class="col-sm-9">{{ form_widget(form.location) }}</div>
                                         </div>
                                     </div>
 
+                                    {% if app.request.get('_route') == 'student_edit' %}
+                                        {% set value =  'Not Graduated Yet' %}
+                                        {% if entity.graduated %}
+                                            {% set value =  entity.graduated.diplomaPrinted | date('Y/m/d') %}
+                                        {% endif %}
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Diploma Printed:</label>
+                                                <div class="col-sm-9"><input type="text" value="{{ value }}" readonly class="form-control"/> </div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label">Location:</label>
-                                            <div class="col-sm-9">{{ form_widget(form.location) }}</div>
+                                            <label class="col-sm-3 control-label">CVS:</label>
+                                            <div class="col-sm-9">{{ form_widget(form.cvs) }}</div>
                                         </div>
                                     </div>
                                 </div>
