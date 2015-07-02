@@ -24,6 +24,9 @@
                             {% if entity.graduated %}
                                 <li role="presentation" id="l005" class="limenu"><a href="#tab005" role="tab" data-toggle="tab">Graduated</a></li>
                             {% endif %}
+                            {% if entity.dropInfo %}
+                                <li role="presentation" id="l006" class="limenu"><a href="#tab006" role="tab" data-toggle="tab">Dropped</a></li>
+                            {% endif %}
                         {% endif %}
                     </ul>
 
@@ -418,6 +421,13 @@
                                                 <div class="form-group">
                                                     <label class="col-sm-3 control-label">Paid:</label>
                                                     <div class="col-sm-9">{{ form_widget(form.dropInfo.paid) }}</div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="col-sm-3 control-label">Comments:</label>
+                                                    <div class="col-sm-9">{{ form_widget(form.dropInfo.comments, {'attr' : {'rows' : 5}} ) }}</div>
                                                 </div>
                                             </div>
                                         </div>

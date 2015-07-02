@@ -23,6 +23,7 @@ class DropInfoType extends AbstractType
             ))
             ->add('check')
             ->add('paid')
+            ->add('comments')
         ;
     }
     
