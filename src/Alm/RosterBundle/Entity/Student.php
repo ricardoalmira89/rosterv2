@@ -228,6 +228,13 @@ class Student
     private $cvs;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="signed_request", type="boolean", nullable=true)
+     */
+    private $signedRequest;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="middle_initial", type="string", length=255, nullable=true)
@@ -1324,5 +1331,28 @@ class Student
             $this->temp = null;
         }
         $this->file = null;
+    }
+
+    /**
+     * Set signedRequest
+     *
+     * @param boolean $signedRequest
+     * @return Student
+     */
+    public function setSignedRequest($signedRequest)
+    {
+        $this->signedRequest = $signedRequest;
+
+        return $this;
+    }
+
+    /**
+     * Get signedRequest
+     *
+     * @return boolean 
+     */
+    public function getSignedRequest()
+    {
+        return $this->signedRequest;
     }
 }

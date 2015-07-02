@@ -51,6 +51,7 @@ class StudentType extends AbstractType
             ->add('emergencyContactPhone3')
             ->add('cv')
             ->add('cvs')
+            ->add('signedRequest')
             ->add('middleInitial')
             ->add('paymentInfo')
             ->add('paymentPlanAmount')
