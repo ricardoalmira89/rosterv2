@@ -24,10 +24,6 @@
                             {% if entity.graduated %}
                                 <li role="presentation" id="l005" class="limenu"><a href="#tab005" role="tab" data-toggle="tab">Graduated</a></li>
                             {% endif %}
-
-                            {% if entity.dropInfo %}
-                                <li role="presentation" id="l006" class="limenu"><a href="#tab006" role="tab" data-toggle="tab">Dropped</a></li>
-                            {% endif %}
                         {% endif %}
                     </ul>
 
@@ -292,6 +288,12 @@
                                             <div class="col-sm-9">{{ form_widget(form.signedRequest) }}</div>
                                         </div>
                                     </div>
+
+
+                                    {% if not entity.dropInfo %}
+                                        <a href="{{ path( 'student_drop', {'id' : entity.id}) }}" class="btn btn-default">Drop</a>
+                                    {% endif %}
+
                                 </div>
                             </div>
                         </div>
