@@ -49,6 +49,9 @@
 {% block delete %}{% endblock %}
 {% block buttons %}
     {% if not entity.dropInfo %}
-    <li><a href="{{ path( entity_name ~ '_drop', {'id' : entity.id}) }}">Drop</a></li>
+    <li><a href="{{ path('student_drop', {'id' : entity.id}) }}">Drop</a></li>
+    {% endif %}
+    {% if not entity.graduated %}
+        <li><a href="{{ path('student_graduate', {'id' : entity.id}) }}">Graduate</a></li>
     {% endif %}
 {% endblock %}

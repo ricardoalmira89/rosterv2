@@ -3,7 +3,9 @@
 namespace Alm\RosterBundle\Controller;
 
 use Alm\RosterBundle\Entity\DropInfo;
+use Alm\RosterBundle\Entity\Graduated;
 use Alm\RosterBundle\Form\DropInfoType;
+use Alm\RosterBundle\Form\GraduatedType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -78,6 +80,7 @@ class StudentController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $entity->setStatus(0); //Pre-Start por defecto
             $em->persist($entity);
             $em->flush();
 
@@ -269,6 +272,11 @@ class StudentController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('RosterBundle:Student')->find($id);
+
+        if ($entity->getDropInfo()) {
+            throw $this->createNotFoundException('This student is already dropped.');
+        }
+
         $dropInfo = new DropInfo();
         $form = $this->createForm(new DropInfoType(), $dropInfo);
 
@@ -276,11 +284,52 @@ class StudentController extends Controller
 
         if ($request->getMethod() == 'POST' ){
 
+            $entity->setStatus(3); //--Dropped
             $entity->setDropInfo($dropInfo);
             $em->persist($dropInfo);
             $em->persist($entity);
             $em->flush();
             $this->get('session')->getFlashBag()->add('notice','Student dropped successfully!');
+            return $this->redirect($this->generateUrl('student'));
+
+        }
+
+        return array(
+            'entity'   => $entity,
+            'form'     => $form->createView(),
+        );
+
+    }
+
+    /**
+     * Graduate a Student entity.
+     *
+     * @Route("/graduate/{id}", name="student_graduate")
+     * @Template("@Roster/Student/graduate.html.twig")
+     */
+    public function graduateAction(Request $request, $id){
+
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('RosterBundle:Student')->find($id);
+
+        if ($entity->getGraduated()) {
+            throw $this->createNotFoundException('This student is already graduated.');
+        }
+
+        $graduated = new Graduated();
+        $form = $this->createForm(new GraduatedType(), $graduated);
+
+        $form->handleRequest($request);
+
+        if ($request->getMethod() == 'POST' ){
+
+            $entity->setStatus(2); //--Graduated
+            $entity->setGraduated($graduated);
+            $em->persist($graduated);
+            $em->persist($entity);
+            $em->flush();
+            $this->get('session')->getFlashBag()->add('notice','Student graduated successfully!');
+            return $this->redirect($this->generateUrl('student'));
 
         }
 

@@ -1,0 +1,143 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-lg-12">
+            <h1>Graduate Student</h1>
+        </div>
+    </div>
+
+    <form action="{{ path('student_graduate',{'id' : entity.id}) }}" method="post" {{ form_enctype(form) }}>
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- Graduated -->
+                <div role="tabpanel" class="tab-pane active" id="tab006">
+                    <div class="form-horizontal">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h4 class="contacto-title" style="border-bottom: 1px solid #CCC;">Graduated Information</h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Company Name:</label>
+                                    <div class="col-sm-9">{{ form_widget(form.companyName) }}</div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Start Working Date:</label>
+                                    <div class="col-sm-9">{{ form_widget(form.startWorking) }}</div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Supervisor Phone:</label>
+                                    <div class="col-sm-9">{{ form_widget(form.supervisorPhone) }}</div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Printed Diploma Date:</label>
+                                    <div class="col-sm-9">{{ form_widget(form.diplomaPrinted) }}</div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Employment Status:</label>
+                                    <div class="col-sm-9">{{ form_widget(form.employmentStatus) }}</div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Job Title:</label>
+                                    <div class="col-sm-9">{{ form_widget(form.jobTitle) }}</div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Supervisor Name:</label>
+                                    <div class="col-sm-9">{{ form_widget(form.supervisorName) }}</div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Employeer Address:</label>
+                                    <div class="col-sm-9">{{ form_widget(form.employerAddress) }}</div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Licensed:</label>
+                                    <div class="col-sm-9">{{ form_widget(form.licensed) }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <input type="submit" value="Send" class="btn btn-default active" id="submit-btn">
+            </div>
+        </div>
+
+    </form>
+
+{% endblock %}
+
+{% block javascripts%}
+    {{ parent() }}
+    <script type="text/javascript">
+
+        function activateTab(tabId){
+            $('.tab-pane').removeClass('active');
+            $('.limenu').removeClass('active');
+            $('#tab00'+tabId).addClass('active');
+            $('#l00'+tabId).addClass('active');
+        }
+
+        function validateForm(){
+
+            if ($('#student_startDate').val() == '' || $('#student_endDate').val() == '') {
+                activateTab('2');
+            }
+
+            if ($('#student_graduated_startWorking').val() == '' || $('#student_graduated_diplomaPrinted').val() == '') {
+                activateTab('5');
+            }
+
+            if ($('#student_dropInfo_date').val() == '') {
+                activateTab('6');
+            }
+        }
+
+        $(document).ready(function() {
+
+            var programs = $('#student_programs');
+            var schedules = $('#student_schedules');
+
+            activateTab('1');
+
+            $("#student_locker option[value="+$('')+"]").attr("selected","selected");
+
+            $('#submit-btn').click(function(){
+                validateForm();
+            });
+
+            programs.change(function(){
+                ajaxGetSchedules(programs, schedules, getSelectedComma(), '{{ path('ajax_schedules') }}');
+            })
+
+
+        });
+    </script>
+
+{% endblock %}
