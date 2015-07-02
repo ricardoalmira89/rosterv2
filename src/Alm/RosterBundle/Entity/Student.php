@@ -174,7 +174,7 @@ class Student
     /**
      * @var string
      *
-     * @ORM\Column(name="status", type="string", length=255, nullable=true)
+     * @ORM\Column(name="status", type="integer", nullable=true)
      */
     private $status;
 
@@ -1354,5 +1354,16 @@ class Student
     public function getSignedRequest()
     {
         return $this->signedRequest;
+    }
+
+    public function getStatusText(){
+
+        if ($this->status == 0) return 'Pre-Start';
+        if ($this->status == 1) return 'Current';
+        if ($this->status == 2) return 'Graduated';
+        if ($this->status == 3) return 'Dropped';
+        if ($this->status == 4) return 'Leave of absence';
+
+        return 'Undefined';
     }
 }

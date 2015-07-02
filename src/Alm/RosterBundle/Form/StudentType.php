@@ -43,7 +43,18 @@ class StudentType extends AbstractType
             ->add('notes')
             ->add('attachment')
             ->add('location')
-            ->add('status')
+            ->add('status', 'choice', array(
+                'choices' => array(
+                    '0' => 'Pre-Start',
+                    '1' => 'Current',
+                    '2' => 'Graduated',
+                    '3' => 'Dropped',
+                    '4' => 'Leave of absence',
+                ),
+                'expanded' => false,
+                'required' => true,
+                'label' => 'Status'
+            ))
             ->add('comments')
             ->add('emergencyContactName')
             ->add('emergencyContactPhone1')
