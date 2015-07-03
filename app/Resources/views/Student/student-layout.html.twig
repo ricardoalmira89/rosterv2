@@ -185,17 +185,23 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-6 date startDate">
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">Start Date:</label>
-                                            <div class="col-sm-9">{{ form_widget(form.startDate) }}</div>
+                                            <div class="col-sm-9">
+                                                {{ form_widget(form.startDate) }}
+                                                <span class="add-on"><i class="icon-th"></i></span>
+                                            </div>
                                         </div>
                                     </div>
 
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-6 date endDate">
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">End Date:</label>
-                                            <div class="col-sm-9">{{ form_widget(form.endDate) }}</div>
+                                            <div class="col-sm-9">
+                                                {{ form_widget(form.endDate) }}
+                                                <span class="add-on"><i class="icon-th"></i></span>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -319,10 +325,13 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-6 date startWorkingDate">
                                             <div class="form-group">
                                                 <label class="col-sm-3 control-label">Start Working Date:</label>
-                                                <div class="col-sm-9">{{ form_widget(form.graduated.startWorking) }}</div>
+                                                <div class="col-sm-9">
+                                                    {{ form_widget(form.graduated.startWorking) }}
+                                                    <span class="add-on"><i class="icon-th"></i></span>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -333,10 +342,13 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-6 date diplomaPrintedDate">
                                             <div class="form-group">
                                                 <label class="col-sm-3 control-label">Printed Diploma Date:</label>
-                                                <div class="col-sm-9">{{ form_widget(form.graduated.diplomaPrinted) }}</div>
+                                                <div class="col-sm-9">
+                                                    {{ form_widget(form.graduated.diplomaPrinted) }}
+                                                    <span class="add-on"><i class="icon-th"></i></span>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -403,10 +415,13 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-sm-6">
+                                            <div class="col-sm-6 date dropDate">
                                                 <div class="form-group">
                                                     <label class="col-sm-3 control-label">Date:</label>
-                                                    <div class="col-sm-9">{{ form_widget(form.dropInfo.date) }}</div>
+                                                    <div class="col-sm-9">
+                                                        {{ form_widget(form.dropInfo.date) }}
+                                                        <span class="add-on"><i class="icon-th"></i></span>
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -484,7 +499,37 @@
 
             programs.change(function(){
                 ajaxGetSchedules(programs, schedules, getSelectedComma(), '{{ path('ajax_schedules') }}');
-            })
+            });
+
+            $(".startDate").datetimepicker({
+                format: "yyyy/mm/dd",
+                linkField: "student_startDate",
+                linkFormat: "yyyy/mm/dd"
+            });
+
+            $(".endDate").datetimepicker({
+                format: "yyyy/mm/dd",
+                linkField: "student_endDate",
+                linkFormat: "yyyy/mm/dd"
+            });
+
+            $(".dropDate").datetimepicker({
+                format: "yyyy/mm/dd",
+                linkField: "student_dropInfo_date",
+                linkFormat: "yyyy/mm/dd"
+            });
+
+            $(".diplomaPrintedDate").datetimepicker({
+                format: "yyyy/mm/dd",
+                linkField: "alm_rosterbundle_graduated_diplomaPrinted",
+                linkFormat: "yyyy/mm/dd"
+            });
+
+            $(".startWorkingDate").datetimepicker({
+                format: "yyyy/mm/dd",
+                linkField: "alm_rosterbundle_graduated_startWorking",
+                linkFormat: "yyyy/mm/dd"
+            });
 
 
         });

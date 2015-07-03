@@ -26,10 +26,13 @@
                                 </div>
                             </div>
 
-                            <div class="col-sm-6">
+                            <div class="col-sm-6 date startWorkingDate">
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">Start Working Date:</label>
-                                    <div class="col-sm-9">{{ form_widget(form.startWorking) }}</div>
+                                    <div class="col-sm-9">
+                                        {{ form_widget(form.startWorking) }}
+                                        <span class="add-on"><i class="icon-th"></i></span>
+                                    </div>
                                 </div>
                             </div>
 
@@ -40,10 +43,13 @@
                                 </div>
                             </div>
 
-                            <div class="col-sm-6">
+                            <div class="col-sm-6 date diplomaPrintedDate">
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">Printed Diploma Date:</label>
-                                    <div class="col-sm-9">{{ form_widget(form.diplomaPrinted) }}</div>
+                                    <div class="col-sm-9">
+                                        {{ form_widget(form.diplomaPrinted) }}
+                                        <span class="add-on"><i class="icon-th"></i></span>
+                                    </div>
                                 </div>
                             </div>
 
@@ -126,15 +132,25 @@
 
             activateTab('1');
 
-            $("#student_locker option[value="+$('')+"]").attr("selected","selected");
-
             $('#submit-btn').click(function(){
                 validateForm();
             });
 
             programs.change(function(){
                 ajaxGetSchedules(programs, schedules, getSelectedComma(), '{{ path('ajax_schedules') }}');
-            })
+            });
+
+            $(".diplomaPrintedDate").datetimepicker({
+                format: "yyyy/mm/dd",
+                linkField: "alm_rosterbundle_graduated_diplomaPrinted",
+                linkFormat: "yyyy/mm/dd"
+            });
+
+            $(".startWorkingDate").datetimepicker({
+                format: "yyyy/mm/dd",
+                linkField: "alm_rosterbundle_graduated_startWorking",
+                linkFormat: "yyyy/mm/dd"
+            });
 
 
         });
