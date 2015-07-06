@@ -181,9 +181,16 @@ class Student
     /**
      * @var string
      *
-     * @ORM\Column(name="comments", type="string", length=255, nullable=true)
+     * @ORM\Column(name="comments", type="text", nullable=true)
      */
     private $comments;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="comments_student_services", type="text", nullable=true)
+     */
+    private $commentsStudentServices;
 
     /**
      * @var string
@@ -1365,5 +1372,28 @@ class Student
         if ($this->status == 4) return 'Leave of absence';
 
         return 'Undefined';
+    }
+
+    /**
+     * Set commentsStudentServices
+     *
+     * @param string $commentsStudentServices
+     * @return Student
+     */
+    public function setCommentsStudentServices($commentsStudentServices)
+    {
+        $this->commentsStudentServices = $commentsStudentServices;
+
+        return $this;
+    }
+
+    /**
+     * Get commentsStudentServices
+     *
+     * @return string 
+     */
+    public function getCommentsStudentServices()
+    {
+        return $this->commentsStudentServices;
     }
 }

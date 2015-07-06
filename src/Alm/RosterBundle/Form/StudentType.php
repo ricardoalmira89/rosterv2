@@ -56,6 +56,7 @@ class StudentType extends AbstractType
                 'label' => 'Status'
             ))
             ->add('comments')
+            ->add('commentsStudentServices')
             ->add('emergencyContactName')
             ->add('emergencyContactPhone1')
             ->add('emergencyContactPhone2')
