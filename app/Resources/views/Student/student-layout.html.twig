@@ -1,5 +1,5 @@
 {% extends '::base.html.twig' %}
-
+{% set loa = '4' %} {#Status: Leave of Absence#}
 {% block body %}
     <div class="row">
         <div class="col-lg-12">
@@ -286,7 +286,7 @@
                                     </div>
 
                                     {% if app.request.get('_route') == 'student_edit' %}
-                                        {% set value =  'Not Graduated Yet' %}
+                                        {% set value =  'N/A' %}
                                         {% if entity.graduated %}
                                             {% set value =  entity.graduated.diplomaPrinted | date('Y/m/d') %}
                                         {% endif %}
@@ -311,14 +311,44 @@
                                             <div class="col-sm-9">{{ form_widget(form.signedRequest) }}</div>
                                         </div>
                                     </div>
-
-                                    {% if app.request.get('_route') == 'student_edit' %}
-                                        {% if not entity.dropInfo %}
-                                            <a href="{{ path( 'student_drop', {'id' : entity.id}) }}" class="btn btn-default">Drop</a>
-                                        {% endif %}
-                                    {% endif %}
-
                                 </div>
+
+                                <div id="leaveOfAbsence">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <h4 class="contacto-title" style="border-bottom: 1px solid #CCC;">Leave of Absence</h4>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="col-sm-6 date absenceStarting">
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Starting Date:</label>
+                                                <div class="col-sm-9">
+                                                    {{ form_widget(form.absenceStarting) }}
+                                                    <span class="add-on"><i class="icon-th"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6 date absenceEnding">
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Ending Date:</label>
+                                                <div class="col-sm-9">
+                                                    {{ form_widget(form.absenceEnding) }}
+                                                    <span class="add-on"><i class="icon-th"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {% if app.request.get('_route') == 'student_edit' %}
+                                    {% if not entity.dropInfo %}
+                                        <a href="{{ path( 'student_drop', {'id' : entity.id}) }}" class="btn btn-default">Drop</a>
+                                    {% endif %}
+                                {% endif %}
+
                             </div>
                         </div>
 
@@ -503,6 +533,8 @@
 
             var programs = $('#student_programs');
             var schedules = $('#student_schedules');
+            var status = $('#student_status');
+            var absenceSection = $('#leaveOfAbsence');
 
             activateTab('1');
 
@@ -514,6 +546,17 @@
 
             programs.change(function(){
                 ajaxGetSchedules(programs, schedules, getSelectedComma(), '{{ path('ajax_schedules') }}');
+            });
+
+            absenceSection.hide();
+
+            {% if entity.status == loa %}
+                absenceSection.fadeIn()
+            {% endif %}
+
+            status.change(function(){
+                if (status.val() == 4) absenceSection.fadeIn(); else
+                absenceSection.hide();
             });
 
             $(".startDate").datetimepicker({
@@ -549,6 +592,18 @@
             $(".enrollmentDate").datetimepicker({
                 format: "yyyy/mm/dd",
                 linkField: "student_enrollmentDate",
+                linkFormat: "yyyy/mm/dd"
+            });
+
+            $(".absenceStarting").datetimepicker({
+                format: "yyyy/mm/dd",
+                linkField: "student_absenceStarting",
+                linkFormat: "yyyy/mm/dd"
+            });
+
+            $(".absenceEnding").datetimepicker({
+                format: "yyyy/mm/dd",
+                linkField: "student_absenceEnding",
                 linkFormat: "yyyy/mm/dd"
             });
 

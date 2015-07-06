@@ -248,7 +248,7 @@
                     </div>
                 </div>
 
-                    {% set value =  'Not Graduated Yet' %}
+                    {% set value =  'N/A' %}
                     {% if entity.graduated %}
                         {% set value =  entity.graduated.diplomaPrinted | date('Y/m/d') %}
                     {% endif %}

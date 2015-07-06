@@ -67,6 +67,20 @@ class Student
     private $enrollmentDate;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="absence_starting", type="datetime", nullable=true)
+     */
+    private $absenceStarting;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="absence_ending", type="datetime", nullable=true)
+     */
+    private $absenceEnding;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="home_phone", type="string", length=255, nullable=true)
@@ -1427,5 +1441,51 @@ class Student
     public function getFafsa()
     {
         return $this->fafsa;
+    }
+
+    /**
+     * Set absenceStarting
+     *
+     * @param \DateTime $absenceStarting
+     * @return Student
+     */
+    public function setAbsenceStarting($absenceStarting)
+    {
+        $this->absenceStarting = $absenceStarting;
+
+        return $this;
+    }
+
+    /**
+     * Get absenceStarting
+     *
+     * @return \DateTime 
+     */
+    public function getAbsenceStarting()
+    {
+        return $this->absenceStarting;
+    }
+
+    /**
+     * Set absenceEnding
+     *
+     * @param \DateTime $absenceEnding
+     * @return Student
+     */
+    public function setAbsenceEnding($absenceEnding)
+    {
+        $this->absenceEnding = $absenceEnding;
+
+        return $this;
+    }
+
+    /**
+     * Get absenceEnding
+     *
+     * @return \DateTime 
+     */
+    public function getAbsenceEnding()
+    {
+        return $this->absenceEnding;
     }
 }
