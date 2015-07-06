@@ -258,9 +258,9 @@ class Student
     /**
      * @var string
      *
-     * @ORM\Column(name="payment_info", type="string", length=255, nullable=true)
+     * @ORM\Column(name="fafsa", type="boolean", nullable=true)
      */
-    private $paymentInfo;
+    private $fafsa;
 
     /**
      * @var string
@@ -1046,29 +1046,6 @@ class Student
     }
 
     /**
-     * Set paymentInfo
-     *
-     * @param string $paymentInfo
-     * @return Student
-     */
-    public function setPaymentInfo($paymentInfo)
-    {
-        $this->paymentInfo = $paymentInfo;
-
-        return $this;
-    }
-
-    /**
-     * Get paymentInfo
-     *
-     * @return string 
-     */
-    public function getPaymentInfo()
-    {
-        return $this->paymentInfo;
-    }
-
-    /**
      * Set paymentPlanAmount
      *
      * @param string $paymentPlanAmount
@@ -1427,5 +1404,28 @@ class Student
         if (null != $this->enrollmentDate)
         return $this->enrollmentDate; else
             return new \DateTime();
+    }
+
+    /**
+     * Set fafsa
+     *
+     * @param boolean $fafsa
+     * @return Student
+     */
+    public function setFafsa($fafsa)
+    {
+        $this->fafsa = $fafsa;
+
+        return $this;
+    }
+
+    /**
+     * Get fafsa
+     *
+     * @return boolean 
+     */
+    public function getFafsa()
+    {
+        return $this->fafsa;
     }
 }

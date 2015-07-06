@@ -199,18 +199,19 @@
                     <h4 class="contacto-title" style="border-bottom: 1px solid #CCC;">Financial Information</h4>
                 </div>
             </div>
+
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Plan Amount:</label>
+                    <div class="col-sm-9">{{ entity.paymentPlanAmount}}</div>
+                </div>
+            </div>
+
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">Payment:</label>
-                        <div class="col-sm-9">{{ entity.paymentInfo}}</div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">Plan Amount:</label>
-                        <div class="col-sm-9">{{ entity.paymentPlanAmount}}</div>
+                        <label class="col-sm-3 control-label">FAFSA:</label>
+                        <div class="col-sm-9">{{ entity.fafsa}}</div>
                     </div>
                 </div>
             </div>

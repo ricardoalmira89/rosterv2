@@ -69,7 +69,7 @@ class StudentType extends AbstractType
             ->add('cvs')
             ->add('signedRequest')
             ->add('middleInitial')
-            ->add('paymentInfo')
+            ->add('fafsa')
             ->add('paymentPlanAmount')
             ->add('eo')
             ->add('graduated', new GraduatedType())
