@@ -298,9 +298,10 @@
                                         </div>
                                     </div>
 
-
-                                    {% if not entity.dropInfo %}
-                                        <a href="{{ path( 'student_drop', {'id' : entity.id}) }}" class="btn btn-default">Drop</a>
+                                    {% if app.request.get('_route') == 'student_edit' %}
+                                        {% if not entity.dropInfo %}
+                                            <a href="{{ path( 'student_drop', {'id' : entity.id}) }}" class="btn btn-default">Drop</a>
+                                        {% endif %}
                                     {% endif %}
 
                                 </div>

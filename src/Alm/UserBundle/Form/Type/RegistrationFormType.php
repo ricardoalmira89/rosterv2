@@ -10,15 +10,8 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('empresa', null, array('label' => 'Empresa'))
-            ->add('nombre', 'text', array('label' => 'Nombre'))
-            ->add('nivel', 'choice', array(
-                    'label' => 'Nivel',
-                    'choices' => array(0 => 0, 1 => 1)
-                ))
-            ->add('activo', 'checkbox', array('label' => 'Activo', 'required' => false))
-            ->add('file', null, array('label' => 'Imagen'))
-            ->add('groups', null, array('label' => 'Grupos', 'required' => false))
+            ->add('name', 'text', array('label' => 'Name'))
+            ->add('groups', null, array('label' => 'Roles', 'required' => false))
         ;
     }
 
@@ -29,6 +22,6 @@ class RegistrationFormType extends AbstractType
 
     public function getName()
     {
-        return 'alm_user_registration';
+        return 'lynxoft_user_registration';
     }
 }
