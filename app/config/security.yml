@@ -52,4 +52,4 @@ security:
         - { path: ^/schedule/, role: ROLE_ADMIN }
         - { path: ^/locker/, role: ROLE_ADMIN }
         - { path: ^/student/, role: [ROLE_ENROLLMENT, ROLE_STUDENT_SERVICES] }
-        - { path: ^/reports/, role: [ROLE_ENROLLMENT, ROLE_STUDENT_SERVICES] }
+        - { path: ^/reports/, role: ROLE_ENROLLMENT }
