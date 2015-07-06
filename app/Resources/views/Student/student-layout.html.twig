@@ -11,6 +11,7 @@
     {% block hidden %}
         <input type="hidden" name="_method" value="PUT" />
     {% endblock %}
+
         <div class="row">
             <div class="col-lg-12">
                 <div role="tabpanel" style="margin-top:15px;">
@@ -29,6 +30,9 @@
                             {% endif %}
                         {% endif %}
                     </ul>
+
+                    <input type="submit" value="Save" class="btn btn-default active pull-right" id="submit-btn">
+
 
                     <!-- Tab panes -->
                     <div class="tab-content">
@@ -144,7 +148,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <input type="submit" value="Enviar" class="btn btn-default active" id="submit-btn">
+
                             </div>
                         </div>
 

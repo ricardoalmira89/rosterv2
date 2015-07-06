@@ -20,17 +20,4 @@
         </tbody>
     </table>
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('program') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('program_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
 {% endblock %}

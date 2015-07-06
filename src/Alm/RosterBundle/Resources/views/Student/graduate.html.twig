@@ -91,7 +91,7 @@
                     </div>
                 </div>
 
-                <input type="submit" value="Send" class="btn btn-default active" id="submit-btn">
+                <input type="submit" value="Save" class="btn btn-default active" id="submit-btn">
             </div>
         </div>
 
@@ -110,31 +110,12 @@
             $('#l00'+tabId).addClass('active');
         }
 
-        function validateForm(){
-
-            if ($('#student_startDate').val() == '' || $('#student_endDate').val() == '') {
-                activateTab('2');
-            }
-
-            if ($('#student_graduated_startWorking').val() == '' || $('#student_graduated_diplomaPrinted').val() == '') {
-                activateTab('5');
-            }
-
-            if ($('#student_dropInfo_date').val() == '') {
-                activateTab('6');
-            }
-        }
-
         $(document).ready(function() {
 
             var programs = $('#student_programs');
             var schedules = $('#student_schedules');
 
             activateTab('1');
-
-            $('#submit-btn').click(function(){
-                validateForm();
-            });
 
             programs.change(function(){
                 ajaxGetSchedules(programs, schedules, getSelectedComma(), '{{ path('ajax_schedules') }}');

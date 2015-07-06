@@ -15,7 +15,7 @@
 					<li class="bienvenida">Hi! {{ app.user.name }}<div><a href="{{ path('fos_user_security_logout') }}">Close Session</a></div></li>
 				{% else %}
 					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>Inicia sesión<span class="caret"></span>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>Log In<span class="caret"></span>
 						</a>
 						<div class="dropdown-menu row loginbox">
 							{{ render(path('fos_user_security_login_render')) }}

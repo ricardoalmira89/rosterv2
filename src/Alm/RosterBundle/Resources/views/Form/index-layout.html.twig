@@ -40,9 +40,9 @@
                                         {% endblock %}
                                         <td>
                                             <div class="btn-group pull-right">
-                                                <button type="button" class="btn btn-default active text-normal dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Show</button>
+                                                <button type="button" class="btn btn-default active text-normal dropdown-toggle" data-toggle="dropdown" aria-expanded="false">View</button>
                                                 <ul class="dropdown-menu" role="menu">
-                                                    <li><a href="{{ path( entity_name ~ '_show', {'id' : entity.id}) }}">Show</a></li>
+                                                    <li><a href="{{ path( entity_name ~ '_show', {'id' : entity.id}) }}">View</a></li>
                                                     <li><a href="{{ path( entity_name ~ '_edit', {'id' : entity.id}) }}">Edit</a></li>
                                                     {% block delete %}
                                                         <li><a href="#" data-toggle="modal" data-target="#MDL-eliminar-{{ loop.index0 }}">Delete</a></li>
