@@ -19,8 +19,8 @@
 {% endblock %}
 
 {% block table_header %}
-    <th>CV#</th>
     <th>Picture</th>
+    <th>CV#</th>
     <th>Full Name</th>
     <th>Program</th>
     <th>Schedule</th>
@@ -32,14 +32,14 @@
 {% endblock %}
 
 {% block table_body %}
-    <td>{{ entity.cv }}</td>
     <td>
         {% if entity.picture %}
-            <img src="{{ asset(entity.webPath) }}" class="img-thumbnail" width="50" />
+            <a href="{{ path('student_show', {'id' : entity.id}) }}"> <img src="{{ asset(entity.webPath) }}" class="img-thumbnail" width="90" /></a>
         {% else %}
-            <img src="{{ asset('media/images/image-usuario.png') }}" class="img-thumbnail" width="50" />
+        <a href="{{ path('student_show', {'id' : entity.id}) }}"> <img src="{{ asset('media/images/image-usuario.png') }}" class="img-thumbnail" width="90" /></a>
         {% endif %}
     </td>
+    <td>{{ entity.cv }}</td>
     <td>{{ entity }}</td>
     <td>{{ entity.programsText }}</td>
     <td>{{ entity.schedulesText }}</td>
