@@ -60,6 +60,13 @@ class Student
     private $endDate;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="enrollment_date", type="datetime", nullable=true)
+     */
+    private $enrollmentDate;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="home_phone", type="string", length=255, nullable=true)
@@ -1395,5 +1402,30 @@ class Student
     public function getCommentsStudentServices()
     {
         return $this->commentsStudentServices;
+    }
+
+    /**
+     * Set enrollmentDate
+     *
+     * @param \DateTime $enrollmentDate
+     * @return Student
+     */
+    public function setEnrollmentDate($enrollmentDate)
+    {
+        $this->enrollmentDate = $enrollmentDate;
+
+        return $this;
+    }
+
+    /**
+     * Get enrollmentDate
+     *
+     * @return \DateTime 
+     */
+    public function getEnrollmentDate()
+    {
+        if (null != $this->enrollmentDate)
+        return $this->enrollmentDate; else
+            return new \DateTime();
     }
 }

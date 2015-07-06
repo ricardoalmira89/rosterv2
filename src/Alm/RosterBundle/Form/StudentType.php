@@ -28,6 +28,10 @@ class StudentType extends AbstractType
                 'widget' => 'single_text',
                 'format' => 'yyyy/MM/dd',
             ))
+            ->add('enrollmentDate', 'datetime',array(
+                'widget' => 'single_text',
+                'format' => 'yyyy/MM/dd',
+            ))
             ->add('homePhone')
             ->add('bussinessPhone')
             ->add('cellPhone')

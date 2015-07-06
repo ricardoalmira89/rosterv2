@@ -209,12 +209,15 @@
                                         </div>
                                     </div>
 
-                                    {#<div class="col-sm-6">#}
-                                        {#<div class="form-group">#}
-                                            {#<label class="col-sm-3 control-label">Enrollment Date:</label>#}
-                                            {#<div class="col-sm-9">{{ form_widget(form.enrollmentDate) }}</div>#}
-                                        {#</div>#}
-                                    {#</div>#}
+                                    <div class="col-sm-6 date enrollmentDate">
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Enrollment Date:</label>
+                                            <div class="col-sm-9">
+                                                {{ form_widget(form.enrollmentDate) }}
+                                                <span class="add-on"><i class="icon-th"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -540,6 +543,12 @@
             $(".startWorkingDate").datetimepicker({
                 format: "yyyy/mm/dd",
                 linkField: "alm_rosterbundle_graduated_startWorking",
+                linkFormat: "yyyy/mm/dd"
+            });
+
+            $(".enrollmentDate").datetimepicker({
+                format: "yyyy/mm/dd",
+                linkField: "student_enrollmentDate",
                 linkFormat: "yyyy/mm/dd"
             });
 
