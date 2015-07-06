@@ -286,6 +286,7 @@ class StudentController extends Controller
 
             $entity->setStatus(3); //--Dropped
             $entity->setDropInfo($dropInfo);
+            $entity->setLocker(null);
             $em->persist($dropInfo);
             $em->persist($entity);
             $em->flush();
@@ -325,6 +326,7 @@ class StudentController extends Controller
 
             $entity->setStatus(2); //--Graduated
             $entity->setGraduated($graduated);
+            $entity->setLocker(null);
             $em->persist($graduated);
             $em->persist($entity);
             $em->flush();
