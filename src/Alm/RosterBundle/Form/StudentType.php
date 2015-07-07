@@ -100,6 +100,7 @@ class StudentType extends AbstractType
             ->add('dropInfo', new DropInfoType())
             ->add('schedules')
             ->add('programs')
+            ->add('curriculumSchedule', new CurriculumScheduleType())
             ->add('file', null, array('label' => 'Picture'))
         ;
     }

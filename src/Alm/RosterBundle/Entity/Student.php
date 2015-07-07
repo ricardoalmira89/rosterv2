@@ -338,6 +338,18 @@ class Student
      */
     private $programs;
 
+
+    /**
+     * @var CurriculumSchedule
+     *
+     * @ORM\OneToOne(targetEntity="Alm\RosterBundle\Entity\CurriculumSchedule", cascade={"persist"})
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="curriculum_schedule_id", referencedColumnName="id")
+     * })
+     */
+    private $curriculumSchedule;
+
+
     private $temp;
 
     /**
@@ -1487,5 +1499,28 @@ class Student
     public function getAbsenceEnding()
     {
         return $this->absenceEnding;
+    }
+
+    /**
+     * Set curriculumSchedule
+     *
+     * @param \Alm\RosterBundle\Entity\CurriculumSchedule $curriculumSchedule
+     * @return Student
+     */
+    public function setCurriculumSchedule(\Alm\RosterBundle\Entity\CurriculumSchedule $curriculumSchedule = null)
+    {
+        $this->curriculumSchedule = $curriculumSchedule;
+
+        return $this;
+    }
+
+    /**
+     * Get curriculumSchedule
+     *
+     * @return \Alm\RosterBundle\Entity\CurriculumSchedule 
+     */
+    public function getCurriculumSchedule()
+    {
+        return $this->curriculumSchedule;
     }
 }
