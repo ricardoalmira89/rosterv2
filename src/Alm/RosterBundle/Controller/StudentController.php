@@ -129,7 +129,9 @@ class StudentController extends Controller
      */
     public function newAction()
     {
+        $em = $this->getDoctrine()->getManager();
         $entity = new Student();
+        $entity->setCv($em->getRepository('RosterBundle:Student')->generaCv());
         $form   = $this->createCreateForm($entity);
 
         return array(
@@ -342,4 +344,5 @@ class StudentController extends Controller
         );
 
     }
+
 }

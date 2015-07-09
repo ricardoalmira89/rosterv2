@@ -38,8 +38,19 @@ class StudentRepository extends EntityRepository{
             ->setParameter('sd',$startDate);
 
         return $q->getQuery()->getResult();
+    }
 
+    public function generaCv(){
 
+        $y = str_replace('20','2',date_format(new \DateTime('now'),'Y'));
+
+        $q = $this->createQueryBuilder('s')
+            ->setMaxResults(1)
+            ->orderBy('s.cv','DESC');
+
+        $lastCv = $q->getQuery()->getArrayResult()[0]['cv'];
+
+        return (substr($lastCv,0,3) == $y) ? $lastCv + 1 : $y.'001';
     }
 
 }
