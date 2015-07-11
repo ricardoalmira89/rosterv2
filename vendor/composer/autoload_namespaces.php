@@ -30,5 +30,7 @@ return array(
     'FOS\\UserBundle' => array($vendorDir . '/fos'),
     'Knp\\Bundle\\PaginatorBundle\\' => array($vendorDir . '/knp'),
     'Knp\\Component' => array($vendorDir . '/knp-components/src'),
+    'Liuggio\\ExcelBundle' => array($vendorDir . '/liuggio'),
+    'PHPExcel' => array($vendorDir . '/PHPExcel/Classes'),
     '' => array($baseDir . '/src'),
 );
