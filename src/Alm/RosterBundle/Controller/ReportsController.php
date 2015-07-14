@@ -146,7 +146,7 @@ class ReportsController extends Controller
             $sheet->getCell('R'.$i)->setValue($entity->getPaymentPlanAmount());
             $sheet->getCell('S'.$i)->setValue(($entity->getFafsa() == true) ? 'YES' : 'NO' );
             $sheet->getCell('T'.$i)->setValue($entity->getStatusText());
-            $sheet->getCell('U'.$i)->setValue($entity->getLocker());
+//            $sheet->getCell('U'.$i)->setValue($entity->getLocker());
             $sheet->getCell('V'.$i)->setValue($entity->getLocation());
             $sheet->getCell('W'.$i)->setValue($entity->getComments());
             $sheet->getCell('Y'.$i)->setValue(($entity->getCvs() == true) ? 'YES' : 'NO' );
