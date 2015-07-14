@@ -35,10 +35,12 @@ class StudentType extends AbstractType
             ->add('absenceStarting', 'datetime',array(
                 'widget' => 'single_text',
                 'format' => 'yyyy/MM/dd',
+                'required' => false
             ))
             ->add('absenceEnding', 'datetime',array(
                 'widget' => 'single_text',
                 'format' => 'yyyy/MM/dd',
+                'required' => false
             ))
             ->add('homePhone')
             ->add('bussinessPhone')
