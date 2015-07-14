@@ -3,7 +3,7 @@ app/cache/*
 app/logs/*
 *.md
 *.php~
-*.yml
+
 
 # -- PHPUnit ------------------------------------------
 app/phpunit.xml  
