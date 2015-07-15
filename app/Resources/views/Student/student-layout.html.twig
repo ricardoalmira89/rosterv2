@@ -164,14 +164,20 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">Program:</label>
-                                            <div class="col-sm-9">{{ form_widget(form.programs) }}</div>
+                                            <div class="col-sm-9">
+                                                {{ form_widget(form.programs) }}
+                                                {{ form_errors(form.programs) }}
+                                            </div>
                                         </div>
                                     </div>
 
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">Schedule:</label>
-                                            <div class="col-sm-9">{{ form_widget(form.schedules) }}</div>
+                                            <div class="col-sm-9">
+                                                {{ form_widget(form.schedules) }}
+                                                {{ form_errors(form.schedules) }}
+                                            </div>
                                         </div>
                                     </div>
 
@@ -623,7 +629,7 @@
 
         function validateForm(){
 
-            if ($('#student_startDate').val() == '' || $('#student_endDate').val() == '') {
+            if ($('#student_startDate').val() == '' || $('#student_endDate').val() == '' || $('#student_programs').val() == null || $('#student_schedules').val() == null) {
                 activateTab('2');
             }
 

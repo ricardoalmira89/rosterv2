@@ -326,6 +326,7 @@ class Student
      *      joinColumns={@ORM\JoinColumn(name="student_id", referencedColumnName="id", onDelete="CASCADE")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="schedule_id", referencedColumnName="id", onDelete="CASCADE")}
      * )
+     * @Assert\NotBlank(message="Required Field.")
      */
     private $schedules;
 
@@ -335,6 +336,7 @@ class Student
      *      joinColumns={@ORM\JoinColumn(name="student_id", referencedColumnName="id", onDelete="CASCADE")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="program_id", referencedColumnName="id", onDelete="CASCADE")}
      * )
+     * @Assert\NotBlank(message="Required Field.")
      */
     private $programs;
 
