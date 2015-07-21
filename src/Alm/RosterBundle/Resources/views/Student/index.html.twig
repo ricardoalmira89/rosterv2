@@ -41,8 +41,8 @@
     </td>
     <td>{{ entity.cv }}</td>
     <td>{{ entity }}</td>
-    <td>{{ entity.programsText }}</td>
-    <td>{{ entity.schedulesText }}</td>
+    <td>{{ entity.programs | join('/') }}</td>
+    <td>{{ entity.schedules | join('/') }}</td>
     <td>{{ entity.homePhone }}</td>
     <td>{{ entity.startDate | date('Y-m-d') }}</td>
     <td>{{ entity.endDate | date('Y-m-d') }}</td>
