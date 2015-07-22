@@ -153,11 +153,17 @@ class ReportsController extends Controller
             $sheet->getCell('Z'.$i)->setValue(($entity->getSignedRequest() == true) ? 'YES' : 'NO' );
 
             if ($entity->getGraduated()){
-                $sheet->getCell('X'.$i)->setValue(date_format($entity->getGraduated()->getDiplomaPrinted(),'Y/m/d'));
+
+                if ($entity->getGraduated()->getDiplomaPrinted()) {
+                    $sheet->getCell('X'.$i)->setValue(date_format($entity->getGraduated()->getDiplomaPrinted(),'Y/m/d'));
+                    $sheet->getCell('AD'.$i)->setValue(date_format($entity->getGraduated()->getDiplomaPrinted(),'Y/m/d'));
+                }
+                if ($entity->getGraduated()->getStartWorking()) {
+                    $sheet->getCell('AB'.$i)->setValue(date_format($entity->getGraduated()->getStartWorking(),'Y/m/d'));
+                }
+
                 $sheet->getCell('AA'.$i)->setValue($entity->getGraduated()->getCompanyName());
-                $sheet->getCell('AB'.$i)->setValue(date_format($entity->getGraduated()->getStartWorking(),'Y/m/d'));
                 $sheet->getCell('AC'.$i)->setValue($entity->getGraduated()->getSupervisorPhone());
-                $sheet->getCell('AD'.$i)->setValue(date_format($entity->getGraduated()->getDiplomaPrinted(),'Y/m/d'));
                 $sheet->getCell('AE'.$i)->setValue($entity->getGraduated()->getEmploymentStatus());
                 $sheet->getCell('AF'.$i)->setValue($entity->getGraduated()->getJobTitle());
                 $sheet->getCell('AG'.$i)->setValue($entity->getGraduated()->getSupervisorname());
