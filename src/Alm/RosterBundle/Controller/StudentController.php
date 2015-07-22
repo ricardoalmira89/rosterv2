@@ -50,7 +50,7 @@ class StudentController extends Controller
 
         $form->handleRequest($request);
 
-        $entities = $em->getRepository('RosterBundle:Student')->findBy(array(), array('cv' => 'DESC', 'enrollmentDate' => 'DESC'));
+        $entities = $em->getRepository('RosterBundle:Student')->findBy(array(), array('cv' => 'DESC'));
         if ($request->getMethod() == 'POST'){
 
             $field = $form->get('fields')->getData();

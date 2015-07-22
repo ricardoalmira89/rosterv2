@@ -244,7 +244,7 @@ class Student
     /**
      * @var string
      *
-     * @ORM\Column(name="cv", type="string", length=255, nullable=true)
+     * @ORM\Column(name="cv", type="string", length=6, nullable=true)
      */
     private $cv;
 
