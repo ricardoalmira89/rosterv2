@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Student
  *
- * @ORM\Table(name="student", indexes={@ORM\Index(name="fk_student_graduated", columns={"graduated_id"}), @ORM\Index(name="fk_student_enrollmentofficer", columns={"EO"}), @ORM\Index(name="fk_sudent_dropinfo", columns={"dropinfo_id"}), @ORM\Index(name="fk_student_locker", columns={"locker_id"})})
+ * @ORM\Table(name="student")
  * @ORM\Entity(repositoryClass="Alm\RosterBundle\Entity\StudentRepository")
  * @ORM\HasLifecycleCallbacks
  */
