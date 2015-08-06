@@ -208,7 +208,7 @@
                 <div class="tab-content">
 
                     <!-- Theory -->
-                    {% if  entity.curriculumSchedule.theoryTo %}
+                    {% if  entity.curriculumSchedule %}
                     <div role="tabpanel" class="tab-pane" id="curr001">
                         <div class="col-sm-6 date theoryFrom">
                             <div class="form-group">
@@ -231,7 +231,7 @@
                     </div>
                     {% endif %}
                     <!-- Practical -->
-                    {% if  entity.curriculumSchedule.practicalFrom %}
+                    {% if  entity.curriculumSchedule %}
                     <div role="tabpanel" class="tab-pane" id="curr002">
                         <div class="col-sm-6 date practicalFrom">
                             <div class="form-group">
@@ -254,7 +254,7 @@
                     </div>
                     {% endif %}
                     <!-- Make Up -->
-                    {% if  entity.curriculumSchedule.makeupFrom %}
+                    {% if  entity.curriculumSchedule %}
                     <div role="tabpanel" class="tab-pane" id="curr003">
                         <div class="col-sm-6 date makeupFrom">
                             <div class="form-group">
@@ -277,7 +277,7 @@
                     </div>
                     {% endif %}
                     <!-- Clinic -->
-                    {% if  entity.curriculumSchedule.clinicFrom %}
+                    {% if  entity.curriculumSchedule %}
                     <div role="tabpanel" class="tab-pane" id="curr004">
                         <div class="col-sm-6 date clinicFrom">
                             <div class="form-group">
