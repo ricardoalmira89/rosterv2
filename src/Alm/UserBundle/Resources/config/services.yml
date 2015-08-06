@@ -1,0 +1,5 @@
+services:
+    lynxoft_user.registration.form.type:
+        class: Alm\UserBundle\Form\Type\RegistrationFormType
+        tags:
+            - { name: form.type, alias: lynxoft_user_registration }
