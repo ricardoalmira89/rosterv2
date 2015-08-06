@@ -30,6 +30,7 @@ class GraduatedType extends AbstractType
                 'format' => 'yyyy/MM/dd',
                 'required' => false
             ))
+            ->add('diplomaReceived')
             ->add('startWorking', 'datetime',array(
                 'widget' => 'single_text',
                 'format' => 'yyyy/MM/dd',

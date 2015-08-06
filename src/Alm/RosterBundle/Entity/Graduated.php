@@ -101,6 +101,13 @@ class Graduated
     /**
      * @var \DateTime
      *
+     * @ORM\Column(name="diploma_received", type="boolean", nullable=true)
+     */
+    private $diplomaReceived;
+
+    /**
+     * @var \DateTime
+     *
      * @ORM\Column(name="start_working", type="date", nullable=true)
      */
     private $startWorking;
@@ -511,5 +518,30 @@ class Graduated
     public function getEmployerAddress()
     {
         return $this->employerAddress;
+    }
+
+
+
+    /**
+     * Set diplomaReceived
+     *
+     * @param boolean $diplomaReceived
+     * @return Graduated
+     */
+    public function setDiplomaReceived($diplomaReceived)
+    {
+        $this->diplomaReceived = $diplomaReceived;
+
+        return $this;
+    }
+
+    /**
+     * Get diplomaReceived
+     *
+     * @return boolean 
+     */
+    public function getDiplomaReceived()
+    {
+        return $this->diplomaReceived;
     }
 }
