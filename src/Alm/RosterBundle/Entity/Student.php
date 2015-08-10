@@ -1382,6 +1382,7 @@ class Student
         if ($this->status == 2) return 'Graduated';
         if ($this->status == 3) return 'Dropped';
         if ($this->status == 4) return 'Leave of absence';
+        if ($this->status == 5) return 'RDS';
 
         return 'Undefined';
     }
