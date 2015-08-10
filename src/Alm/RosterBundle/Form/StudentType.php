@@ -64,6 +64,7 @@ class StudentType extends AbstractType
                     '2' => 'Graduated',
                     '3' => 'Dropped',
                     '4' => 'Leave of absence',
+                    '5' => 'RDS',
                 ),
                 'expanded' => false,
                 'required' => true,
