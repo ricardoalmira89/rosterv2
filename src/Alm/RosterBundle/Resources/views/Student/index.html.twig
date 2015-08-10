@@ -36,7 +36,7 @@
         {% if entity.picture %}
             <a href="{{ path('student_show', {'id' : entity.id}) }}"> <img src="{{ asset(entity.webPath) }}" class="img-thumbnail" width="90" /></a>
         {% else %}
-        <a href="{{ path('student_show', {'id' : entity.id}) }}"> <img src="{{ asset('media/images/image-usuario.png') }}" class="img-thumbnail" width="90" /></a>
+        <a href="{{ path('student_show', {'id' : entity.id}) }}"> <img src="{{ asset('media/images/unknown-user.jpg') }}" class="img-thumbnail" width="90" /></a>
         {% endif %}
     </td>
     <td>{{ entity.cv }}</td>
