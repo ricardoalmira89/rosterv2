@@ -24,7 +24,7 @@ class Locker
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=3, nullable=false)
+     * @ORM\Column(name="name", type="string", length=4, nullable=false)
      */
     private $name;
 
