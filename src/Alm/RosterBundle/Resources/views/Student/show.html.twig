@@ -170,21 +170,21 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label class="col-sm-3 control-label">Start Date:</label>
-                        <div class="col-sm-9">{{ entity.startDate | date('Y/m/d')}}</div>
+                        <div class="col-sm-9">{{ entity.startDate | date('m/d/Y')}}</div>
                     </div>
                 </div>
 
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label class="col-sm-3 control-label">End Date:</label>
-                        <div class="col-sm-9">{{ entity.endDate | date('Y/m/d') }}</div>
+                        <div class="col-sm-9">{{ entity.endDate | date('m/d/Y') }}</div>
                     </div>
                 </div>
 
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label class="col-sm-3 control-label">Enrollment Date:</label>
-                        <div class="col-sm-9">{{ entity.enrollmentDate | date('Y/m/d') }}</div>
+                        <div class="col-sm-9">{{ entity.enrollmentDate | date('m/d/Y') }}</div>
                     </div>
                 </div>
             </div>
@@ -214,7 +214,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Theory From:</label>
                                 <div class="col-sm-9">
-                                    {{ entity.curriculumSchedule.theoryFrom | date('Y/m/d') }}
+                                    {{ entity.curriculumSchedule.theoryFrom | date('m/d/Y') }}
                                     <span class="add-on"><i class="icon-th"></i></span>
                                 </div>
                             </div>
@@ -223,7 +223,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Theory To:</label>
                                 <div class="col-sm-9">
-                                    {{ entity.curriculumSchedule.theoryTo | date('Y/m/d') }}
+                                    {{ entity.curriculumSchedule.theoryTo | date('m/d/Y') }}
                                     <span class="add-on"><i class="icon-th"></i></span>
                                 </div>
                             </div>
@@ -237,7 +237,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Practical From:</label>
                                 <div class="col-sm-9">
-                                    {{ entity.curriculumSchedule.practicalFrom | date('Y/m/d') }}
+                                    {{ entity.curriculumSchedule.practicalFrom | date('m/d/Y') }}
                                     <span class="add-on"><i class="icon-th"></i></span>
                                 </div>
                             </div>
@@ -246,7 +246,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Practical To:</label>
                                 <div class="col-sm-9">
-                                    {{ entity.curriculumSchedule.practicalTo | date('Y/m/d') }}
+                                    {{ entity.curriculumSchedule.practicalTo | date('m/d/Y') }}
                                     <span class="add-on"><i class="icon-th"></i></span>
                                 </div>
                             </div>
@@ -260,7 +260,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">MakeUp From:</label>
                                 <div class="col-sm-9">
-                                    {{ entity.curriculumSchedule.makeupFrom | date('Y/m/d') }}
+                                    {{ entity.curriculumSchedule.makeupFrom | date('m/d/Y') }}
                                     <span class="add-on"><i class="icon-th"></i></span>
                                 </div>
                             </div>
@@ -269,7 +269,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">MakeUp To:</label>
                                 <div class="col-sm-9">
-                                    {{ entity.curriculumSchedule.makeupTo | date('Y/m/d') }}
+                                    {{ entity.curriculumSchedule.makeupTo | date('m/d/Y') }}
                                     <span class="add-on"><i class="icon-th"></i></span>
                                 </div>
                             </div>
@@ -283,7 +283,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Clinic From:</label>
                                 <div class="col-sm-9">
-                                    {{ entity.curriculumSchedule.clinicFrom | date('Y/m/d') }}
+                                    {{ entity.curriculumSchedule.clinicFrom | date('m/d/Y') }}
                                     <span class="add-on"><i class="icon-th"></i></span>
                                 </div>
                             </div>
@@ -292,7 +292,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Clinic To:</label>
                                 <div class="col-sm-9">
-                                    {{ entity.curriculumSchedule.clinicTo | date('Y/m/d') }}
+                                    {{ entity.curriculumSchedule.clinicTo | date('m/d/Y') }}
                                     <span class="add-on"><i class="icon-th"></i></span>
                                 </div>
                             </div>
@@ -365,7 +365,7 @@
 
                     {% set value =  'N/A' %}
                     {% if entity.graduated %}
-                        {% set value =  entity.graduated.diplomaPrinted | date('Y/m/d') %}
+                        {% set value =  entity.graduated.diplomaPrinted | date('m/d/Y') %}
                     {% endif %}
                     <div class="col-sm-6">
                         <div class="form-group">
@@ -417,7 +417,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Start Working Date:</label>
-                                <div class="col-sm-9">{{ entity.graduated.startWorking | date('Y/m/d')}}</div>
+                                <div class="col-sm-9">{{ entity.graduated.startWorking | date('m/d/Y')}}</div>
                             </div>
                         </div>
 
@@ -431,7 +431,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Printed Diploma Date:</label>
-                                <div class="col-sm-9">{{ entity.graduated.diplomaPrinted | date('Y/m/d')}}</div>
+                                <div class="col-sm-9">{{ entity.graduated.diplomaPrinted | date('m/d/Y')}}</div>
                             </div>
                         </div>
 
@@ -513,7 +513,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Date:</label>
-                                <div class="col-sm-9">{{ entity.dropInfo.date | date('Y/m/d')}}</div>
+                                <div class="col-sm-9">{{ entity.dropInfo.date | date('m/d/Y')}}</div>
                             </div>
                         </div>
 

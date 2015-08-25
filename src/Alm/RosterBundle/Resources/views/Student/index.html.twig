@@ -44,8 +44,8 @@
     <td>{{ entity.programs | join('/') }}</td>
     <td>{{ entity.schedules | join('/') }}</td>
     <td>{{ entity.homePhone }}</td>
-    <td>{{ entity.startDate | date('Y-m-d') }}</td>
-    <td>{{ entity.endDate | date('Y-m-d') }}</td>
+    <td>{{ entity.startDate | date('m/d/Y') }}</td>
+    <td>{{ entity.endDate | date('m/d/Y') }}</td>
     <td>{{ entity.statusText }}</td>
 {% endblock %}
 
