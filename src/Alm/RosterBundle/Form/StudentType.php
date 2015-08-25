@@ -22,24 +22,24 @@ class StudentType extends AbstractType
             ->add('email')
             ->add('startDate', 'datetime',array(
                 'widget' => 'single_text',
-                'format' => 'yyyy/MM/dd',
+                'format' => 'MM/dd/yyyy',
             ))
             ->add('endDate', 'datetime',array(
                 'widget' => 'single_text',
-                'format' => 'yyyy/MM/dd',
+                'format' => 'MM/dd/yyyy',
             ))
             ->add('enrollmentDate', 'datetime',array(
                 'widget' => 'single_text',
-                'format' => 'yyyy/MM/dd',
+                'format' => 'MM/dd/yyyy',
             ))
             ->add('absenceStarting', 'datetime',array(
                 'widget' => 'single_text',
-                'format' => 'yyyy/MM/dd',
+                'format' => 'MM/dd/yyyy',
                 'required' => false
             ))
             ->add('absenceEnding', 'datetime',array(
                 'widget' => 'single_text',
-                'format' => 'yyyy/MM/dd',
+                'format' => 'MM/dd/yyyy',
                 'required' => false
             ))
             ->add('homePhone')

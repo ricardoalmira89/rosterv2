@@ -17,42 +17,42 @@ class CurriculumScheduleType extends AbstractType
         $builder
             ->add('theoryFrom', 'datetime',array(
                 'widget' => 'single_text',
-                'format' => 'yyyy/MM/dd',
+                'format' => 'MM/dd/yyyy',
                 'required' => false
             ))
             ->add('theoryTo', 'datetime',array(
                 'widget' => 'single_text',
-                'format' => 'yyyy/MM/dd',
+                'format' => 'MM/dd/yyyy',
                 'required' => false
             ))
             ->add('practicalFrom', 'datetime',array(
                 'widget' => 'single_text',
-                'format' => 'yyyy/MM/dd',
+                'format' => 'MM/dd/yyyy',
                 'required' => false
             ))
             ->add('practicalTo', 'datetime',array(
                 'widget' => 'single_text',
-                'format' => 'yyyy/MM/dd',
+                'format' => 'MM/dd/yyyy',
                 'required' => false
             ))
             ->add('makeupFrom', 'datetime',array(
                 'widget' => 'single_text',
-                'format' => 'yyyy/MM/dd',
+                'format' => 'MM/dd/yyyy',
                 'required' => false
             ))
             ->add('makeupTo', 'datetime',array(
                 'widget' => 'single_text',
-                'format' => 'yyyy/MM/dd',
+                'format' => 'MM/dd/yyyy',
                 'required' => false
             ))
             ->add('clinicFrom', 'datetime',array(
                 'widget' => 'single_text',
-                'format' => 'yyyy/MM/dd',
+                'format' => 'MM/dd/yyyy',
                 'required' => false
             ))
             ->add('clinicTo', 'datetime',array(
                 'widget' => 'single_text',
-                'format' => 'yyyy/MM/dd',
+                'format' => 'MM/dd/yyyy',
                 'required' => false
             ))
         ;

@@ -39,7 +39,7 @@ class ReportsController extends Controller
             ))
             ->add('startDate', 'datetime',array(
                 'widget' => 'single_text',
-                'format' => 'yyyy/MM/dd',
+                'format' => 'MM/dd/yyyy',
             ))
             ->getForm();
 
