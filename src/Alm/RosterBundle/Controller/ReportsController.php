@@ -146,18 +146,30 @@ class ReportsController extends Controller
             $sheet->getCell('R'.$i)->setValue($entity->getPaymentPlanAmount());
             $sheet->getCell('S'.$i)->setValue(($entity->getFafsa() == true) ? 'YES' : 'NO' );
             $sheet->getCell('T'.$i)->setValue($entity->getStatusText());
-            $sheet->getCell('U'.$i)->setValue($entity->getLocker());
+
+            if ($entity->getLocker())
+                $sheet->getCell('U'.$i)->setValue($entity->getLocker()->getName());
+
             $sheet->getCell('V'.$i)->setValue($entity->getLocation());
             $sheet->getCell('W'.$i)->setValue($entity->getComments());
             $sheet->getCell('Y'.$i)->setValue(($entity->getCvs() == true) ? 'YES' : 'NO' );
             $sheet->getCell('Z'.$i)->setValue(($entity->getSignedRequest() == true) ? 'YES' : 'NO' );
 
             if ($entity->getGraduated()){
-                $sheet->getCell('X'.$i)->setValue(date_format($entity->getGraduated()->getDiplomaPrinted(),'Y/m/d'));
+
+                if ($entity->getGraduated()->getDiplomaPrinted())
+                    $sheet->getCell('X'.$i)->setValue(date_format($entity->getGraduated()->getDiplomaPrinted(),'Y/m/d'));
+
                 $sheet->getCell('AA'.$i)->setValue($entity->getGraduated()->getCompanyName());
-                $sheet->getCell('AB'.$i)->setValue(date_format($entity->getGraduated()->getStartWorking(),'Y/m/d'));
+
+                if ($entity->getGraduated()->getStartWorking())
+                    $sheet->getCell('AB'.$i)->setValue(date_format($entity->getGraduated()->getStartWorking(),'Y/m/d'));
+
                 $sheet->getCell('AC'.$i)->setValue($entity->getGraduated()->getSupervisorPhone());
-                $sheet->getCell('AD'.$i)->setValue(date_format($entity->getGraduated()->getDiplomaPrinted(),'Y/m/d'));
+
+                if ($entity->getGraduated()->getDiplomaPrinted())
+                    $sheet->getCell('AD'.$i)->setValue(date_format($entity->getGraduated()->getDiplomaPrinted(),'Y/m/d'));
+
                 $sheet->getCell('AE'.$i)->setValue($entity->getGraduated()->getEmploymentStatus());
                 $sheet->getCell('AF'.$i)->setValue($entity->getGraduated()->getJobTitle());
                 $sheet->getCell('AG'.$i)->setValue($entity->getGraduated()->getSupervisorname());
@@ -168,7 +180,10 @@ class ReportsController extends Controller
             if ($entity->getDropInfo()){
                 $sheet->getCell('AJ'.$i)->setValue($entity->getDropInfo()->getAmount());
                 $sheet->getCell('AK'.$i)->setValue($entity->getDropInfo()->getCheck());
-                $sheet->getCell('AL'.$i)->setValue(date_format($entity->getDropInfo()->getDate(),'Y/m/d'));
+
+                if ($entity->getDropInfo()->getDate())
+                    $sheet->getCell('AL'.$i)->setValue(date_format($entity->getDropInfo()->getDate(),'Y/m/d'));
+
                 $sheet->getCell('AM'.$i)->setValue($entity->getDropInfo()->getRefund());
                 $sheet->getCell('AN'.$i)->setValue(($entity->getDropInfo()->getPaid() == true) ? 'YES' : 'NO' );
                 $sheet->getCell('AO'.$i)->setValue($entity->getDropInfo()->getComments());
