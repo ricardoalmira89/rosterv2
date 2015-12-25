@@ -21,10 +21,12 @@
 {% block table_header %}
     <th>Picture</th>
     <th>CV#</th>
-    <th>Full Name</th>
-    <th>Program</th>
-    <th>Schedule</th>
-    <th>Phone#</th>
+    <th width="15%">Full Name</th>
+    <th width="8%">Program</th>
+    <th width="8%">Schedule</th>
+    {#<th>Phone#</th>#}
+    <th>E/O</th>
+    <th>E/Date</th>
     <th>Start Date</th>
     <th>End Date</th>
     <th>Status</th>
@@ -43,7 +45,9 @@
     <td>{{ entity }}</td>
     <td>{{ entity.programs | join('/') }}</td>
     <td>{{ entity.schedules | join('/') }}</td>
-    <td>{{ entity.homePhone }}</td>
+    {#<td>{{ entity.homePhone }}</td>#}
+    <td>{{ entity.eo }}</td>
+    <td>{{ entity.enrollmentDate | date('m/d/Y')  }}</td>
     <td>{{ entity.startDate | date('m/d/Y') }}</td>
     <td>{{ entity.endDate | date('m/d/Y') }}</td>
     <td>{{ entity.statusText }}</td>
